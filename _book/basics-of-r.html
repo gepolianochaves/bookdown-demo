@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Basics of R | Research in Computational Biology book</title>
+<meta name="author" content="Gepoliano Chaves">
+<meta name="description" content="2.1 Basic Steps R can be accessed by clicking an icon or entering the command “R” at the system command line, also refered to as Terminal This produces a console window or causes R to start up as...">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Basics of R | Research in Computational Biology book">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.1 Basic Steps R can be accessed by clicking an icon or entering the command “R” at the system command line, also refered to as Terminal This produces a console window or causes R to start up as...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Basics of R | Research in Computational Biology book">
+<meta name="twitter:description" content="2.1 Basic Steps R can be accessed by clicking an icon or entering the command “R” at the system command line, also refered to as Terminal This produces a console window or causes R to start up as...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Research in Computational Biology book</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Prerequisites</a></li>
+<li><a class="active" href="basics-of-r.html"><span class="header-section-number">2</span> Basics of R</a></li>
+<li><a class="" href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></li>
+<li><a class="" href="an%C3%A1lise-de-sobreviv%C3%AAncia.html"><span class="header-section-number">4</span> Análise de Sobrevivência</a></li>
+<li><a class="" href="final-words.html"><span class="header-section-number">5</span> Final Words</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="basics-of-r" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Basics of R<a class="anchor" aria-label="anchor" href="#basics-of-r"><i class="fas fa-link"></i></a>
+</h1>
+<div id="basic-steps" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Basic Steps<a class="anchor" aria-label="anchor" href="#basic-steps"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>R can be accessed by clicking an icon or entering the command “R” at the system command line, also refered to as Terminal</p></li>
+<li><p>This produces a console window or causes R to start up as an interactive program at the current terminal window</p></li>
+<li><p>R works fundamentally by a question-and-answer model: enter a line with a command and press Enter</p></li>
+<li><p>Then the program does something relevant</p></li>
+<li><p>In this course, we will use RStudio and a file format called R Markdown, which allows us to code using not only R, but bash and Python, two other languages we may refer to as the course progresses</p></li>
+</ul>
+</div>
+<div id="library-iswr" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Library ISwR<a class="anchor" aria-label="anchor" href="#library-iswr"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>This notebook used the book Introductory Statistics with R, by Peter Dalgaard as a reference</p></li>
+<li><p>For the book, R library ISwR (Introductory Statistics with R) can be freely downloaded</p></li>
+<li><p>All examples in the book used as reference should run provided that ISwR library is not only installed by also loaded into the current search path</p></li>
+<li><p>Library can be installed and loaded by typing the following command into an R chunk</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ISwR"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"ISwR"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="plot-random-numbers" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Plot Random Numbers<a class="anchor" aria-label="anchor" href="#plot-random-numbers"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>For a first impression of what R can do, let´s try plotting a graph</p></li>
+<li><p>Need to insert the R chunk and use the plot function</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+</div>
+<div id="a-potent-calculator" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> A Potent Calculator<a class="anchor" aria-label="anchor" href="#a-potent-calculator"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>R can process simple and complex arithmetic expression and produce a result for the user</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>R can also be used to do other standard calculations. Here is how to calculate e to the power of -2</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 0.1353353</code></pre>
+<ul>
+<li><p>Other than the R chunks, these calculations can be made using the RStudio Console</p></li>
+<li><p>In RStusio, when using the R Markdown format (.Rmd), we can insert R, Bash (terminal) and Python chunks</p></li>
+<li><p>Proceed to illustrate that in the RStudio IDE</p></li>
+</ul>
+</div>
+<div id="assignments" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Assignments<a class="anchor" aria-label="anchor" href="#assignments"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Assignments are made based on the necessity to store the results of calculations and use these results in downstream processing steps in an entire algorithm or pipeline</p></li>
+<li><p>Like other languages, R has symbolic <strong>variables</strong>: names that can be used to represent values</p></li>
+<li><p>To assign the value 2 to variable x, we can enter the following command</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></code></pre></div>
+<ul>
+<li><p>The character &lt;- is called the assignment operator</p></li>
+<li><p>There is no immediate visible result, but from now on, x has the value 2 and can be used in subsequent arithmetic operations</p></li>
+<li><p>We can “ask” R which value is stores in the x variable</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="operations-after-assignment-of-variable" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> Operations after assignment of variable<a class="anchor" aria-label="anchor" href="#operations-after-assignment-of-variable"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Below, our variable x, is used to perform other calculations</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<ul>
+<li>Addition</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">+</span> <span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>Multiplication</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">5</span><span class="op">*</span><span class="va">x</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<ul>
+<li>Potentiation</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">^</span><span class="fl">3</span> </span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="vectorized-arithmetic" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Vectorized Arithmetic<a class="anchor" aria-label="anchor" href="#vectorized-arithmetic"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>It is not useful to use one number at a time to run statistics</p></li>
+<li><p>One strenght of R is that it can handle entire data vectors as single objects</p></li>
+<li><p>A data vector is an array of numbers and a vector variable can be constructed like this</p></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">weight</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">72</span>, <span class="fl">57</span>, <span class="fl">90</span>, <span class="fl">95</span>, <span class="fl">72</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## To look at the vector variable, just type its name again</span></span>
+<span><span class="va">weight</span></span></code></pre></div>
+<pre><code>## [1] 60 72 57 90 95 72</code></pre>
+<ul>
+<li><p>You can do calculations with vectors just like ordinary numbers, so long as they have the same length</p></li>
+<li><p>One exception to this rule that we will see will be when we use the mean of weigths of persons (represented by xbar)</p></li>
+<li><p>In that case, the mean will be one single number, which will be subtracted from each sample value</p></li>
+<li><p>Suppose the weight vector indicates the weight of men in kilograms</p></li>
+<li><p>One simple formula to indicate whether a person is obese or not, is the body mass index (BMI)</p></li>
+<li><p>BMI is calculated by dividing the person´s weight by the square of their height, in meters</p></li>
+<li><p>Therefore, in R, we need to have a vector with the height values to calculate the bmi vector, containing the body-mass index for the individuals indicated in the weight vector</p></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.75</span>, <span class="fl">1.80</span>, <span class="fl">1.65</span>, <span class="fl">1.90</span>, <span class="fl">1.74</span>, <span class="fl">1.91</span><span class="op">)</span></span>
+<span><span class="va">bmi</span> <span class="op">&lt;-</span> <span class="va">weight</span><span class="op">/</span><span class="va">height</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="va">bmi</span></span></code></pre></div>
+<pre><code>## [1] 19.59184 22.22222 20.93664 24.93075 31.37799 19.73630</code></pre>
+</div>
+<div id="calculate-the-mean-of-the-variable-weight" class="section level2" number="2.8">
+<h2>
+<span class="header-section-number">2.8</span> Calculate the Mean of the variable weight<a class="anchor" aria-label="anchor" href="#calculate-the-mean-of-the-variable-weight"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>The mean is calculated by the sum of the observations divided by the total number of observations</li>
+</ul>
+<p><span class="math inline">\(\overline{x}\)</span> = <span class="math inline">\(\sum x_i\)</span> /n</p>
+<ul>
+<li>Let´s calculate the mean of the variable weight</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 446</code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 74.33333</code></pre>
+</div>
+<div id="calculate-the-standard-deviation-of-the-variable-weight" class="section level2" number="2.9">
+<h2>
+<span class="header-section-number">2.9</span> Calculate the Standard-Deviation of the variable weight<a class="anchor" aria-label="anchor" href="#calculate-the-standard-deviation-of-the-variable-weight"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Standard-deviation can be calculated with the following equation</li>
+</ul>
+<p><span class="math display">\[ SD = \sqrt{(\sum (x_i - \overline{x})^2)/(n-1)}\]</span></p>
+<ul>
+<li>xbar, the mean of variable weight, can be calculated using the sum and length of variable weight</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">xbar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span></span>
+<span><span class="va">xbar</span></span></code></pre></div>
+<pre><code>## [1] 74.33333</code></pre>
+<ul>
+<li>Now we can calculate the difference of each replicate in the weight variable and the mean of the weight variable, one by one</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">weight</span> <span class="op">-</span> <span class="va">xbar</span></span></code></pre></div>
+<pre><code>## [1] -14.333333  -2.333333 -17.333333  15.666667  20.666667  -2.333333</code></pre>
+<ul>
+<li><p>Notice how R uses xbar, which has length one, to calculate the new weight - xbar data vector</p></li>
+<li><p>xbar is recycled and subracted from every element in the weight variable (weight data vector)</p></li>
+</ul>
+</div>
+<div id="calculation-of-the-standard-deviation" class="section level2" number="2.10">
+<h2>
+<span class="header-section-number">2.10</span> Calculation of the Standard Deviation<a class="anchor" aria-label="anchor" href="#calculation-of-the-standard-deviation"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Calculate the squared deviations</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="va">xbar</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
+<pre><code>## [1] 205.444444   5.444444 300.444444 245.444444 427.111111   5.444444</code></pre>
+<ul>
+<li>Calculate the sum of squared deviations</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="va">xbar</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 1189.333</code></pre>
+<p>Calculate the standard deviation</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span></span>
+<span>    <span class="op">(</span><span class="va">weight</span> <span class="op">-</span> <span class="va">xbar</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span></span>
+<span>      <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 15.42293</code></pre>
+</div>
+<div id="standard-statistical-procedures" class="section level2" number="2.11">
+<h2>
+<span class="header-section-number">2.11</span> Standard Statistical Procedures<a class="anchor" aria-label="anchor" href="#standard-statistical-procedures"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>It is a standard medical practice to access whether a person is obese or not using validated scientific criteria</p></li>
+<li><p>As a simple procedure to show this concept, let’s assume that an individual with a normal weight should have a BMI in the range 20-25</p></li>
+<li><p>We want to know if our data deviates from the normal range of BMI</p></li>
+<li><p>In R, this can be done using a statistical test called t-test</p></li>
+<li><p>You do not need to understand what a t-test is, just remember that is is used to evaluate the distribution of sample values compared to the normal distribution</p></li>
+<li><p>You can use a one-sample t-test to assess whether the six persons’ BMI can be assumed to have mean 22.5 given that they come from a normal distribution</p></li>
+<li><p>You can do that using the function t.test</p></li>
+</ul>
+</div>
+<div id="standard-statistical-procedures-t-test" class="section level2" number="2.12">
+<h2>
+<span class="header-section-number">2.12</span> Standard Statistical Procedures: t-test<a class="anchor" aria-label="anchor" href="#standard-statistical-procedures-t-test"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span></span>
+<span>  <span class="va">bmi</span>,</span>
+<span>  mu <span class="op">=</span> <span class="fl">22.5</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  bmi
+## t = 0.34488, df = 5, p-value = 0.7442
+## alternative hypothesis: true mean is not equal to 22.5
+## 95 percent confidence interval:
+##  18.41734 27.84791
+## sample estimates:
+## mean of x 
+##  23.13262</code></pre>
+</div>
+<div id="plot-graphics" class="section level2" number="2.13">
+<h2>
+<span class="header-section-number">2.13</span> Plot Graphics<a class="anchor" aria-label="anchor" href="#plot-graphics"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Let’s now plot a scatterplot of the height and weight of individuals</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
+</div>
+<div id="plot-graphics-modifying-the-plotting-character" class="section level2" number="2.14">
+<h2>
+<span class="header-section-number">2.14</span> Plot Graphics Modifying the plotting character<a class="anchor" aria-label="anchor" href="#plot-graphics-modifying-the-plotting-character"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>You will frequently want to modify drawing of your graphs in various ways</p></li>
+<li><p>One way is usig the parameter “plotting character”, pch</p></li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span>, pch <span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+</div>
+<div id="plot-an-expected-line-for-weights-at-bmi-of-22.5" class="section level2" number="2.15">
+<h2>
+<span class="header-section-number">2.15</span> Plot an expected Line for weights at BMI of 22.5<a class="anchor" aria-label="anchor" href="#plot-an-expected-line-for-weights-at-bmi-of-22.5"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>The term for weight at BMI of 22.5 is:</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">22.5</span><span class="op">*</span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
+<ul>
+<li><p>This term can be used to compute the line of expected weights at a BMI of 22.5 using the lines() function</p></li>
+<li><p>As a note, we can’t use the lines() function without first creating a plot in R.</p></li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">weight</span>, pch <span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">hh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.65</span>, <span class="fl">1.70</span>, <span class="fl">1.75</span>, <span class="fl">1.80</span>, <span class="fl">1.85</span>, <span class="fl">1.90</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">hh</span>, <span class="fl">22.5</span> <span class="op">*</span> <span class="op">(</span><span class="va">hh</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
+</div>
+<div id="vectors" class="section level2" number="2.16">
+<h2>
+<span class="header-section-number">2.16</span> Vectors<a class="anchor" aria-label="anchor" href="#vectors"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>The weight and height vectors are called numeric vectors</p></li>
+<li><p>Besides numeric vectors, there are numeric and character vectors</p></li>
+</ul>
+</div>
+<div id="using-other-libraries" class="section level2" number="2.17">
+<h2>
+<span class="header-section-number">2.17</span> Using other libraries<a class="anchor" aria-label="anchor" href="#using-other-libraries"><i class="fas fa-link"></i></a>
+</h2>
+<div id="the-iris-data-frame" class="section level3" number="2.17.1">
+<h3>
+<span class="header-section-number">2.17.1</span> The iris data-frame<a class="anchor" aria-label="anchor" href="#the-iris-data-frame"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Now we have a better understanding of what R can give us, let us use another library more commonly used datasets</p></li>
+<li><p>At times, it is possible that you will need to figure out different ways to install a library to use it</p></li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>In the next chunk, we access the iris data, and look at a summary of the dataset</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<ul>
+<li>Another form to look at the iris data-frame is typing its name</li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">iris</span></span></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
+</div>
+<div id="more-visualization-of-the-iris-dataset" class="section level3" number="2.17.2">
+<h3>
+<span class="header-section-number">2.17.2</span> More Visualization of the iris dataset<a class="anchor" aria-label="anchor" href="#more-visualization-of-the-iris-dataset"><i class="fas fa-link"></i></a>
+</h3>
+<p>These are basic R functions that allow us to get general information about a dataframe:</p>
+<ul>
+<li>dim()</li>
+<li>head()</li>
+<li>View()</li>
+<li>class()</li>
+<li>str()</li>
+</ul>
+</div>
+<div id="basic-r-functions" class="section level3" number="2.17.3">
+<h3>
+<span class="header-section-number">2.17.3</span> Basic R functions<a class="anchor" aria-label="anchor" href="#basic-r-functions"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>Select the number of lines to visualize with the head command</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
+<ul>
+<li>Determine the number of columns and rows in the dataframe:</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 150   5</code></pre>
+<ul>
+<li>Determine the class() that the dataset belongs to</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "data.frame"</code></pre>
+</div>
+</div>
+<div id="more-visualization" class="section level2" number="2.18">
+<h2>
+<span class="header-section-number">2.18</span> More Visualization<a class="anchor" aria-label="anchor" href="#more-visualization"><i class="fas fa-link"></i></a>
+</h2>
+<div id="scatterplot-includes-warnings" class="section level3" number="2.18.1">
+<h3>
+<span class="header-section-number">2.18.1</span> Scatterplot (includes warnings)<a class="anchor" aria-label="anchor" href="#scatterplot-includes-warnings"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">iris</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">)</span> <span class="co">## R will complain about this command</span></span></code></pre></div>
+<pre><code>## Warning in plot.window(...): "data" is not a graphical parameter</code></pre>
+<pre><code>## Warning in plot.xy(xy, type, ...): "data" is not a graphical parameter</code></pre>
+<pre><code>## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter
+## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter</code></pre>
+<pre><code>## Warning in box(...): "data" is not a graphical parameter</code></pre>
+<pre><code>## Warning in title(...): "data" is not a graphical parameter</code></pre>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">)</span> <span class="co">## According to the error, this was plotted using a different synthax</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-2.png" width="672"></div>
+</div>
+<div id="scatterplot" class="section level3" number="2.18.2">
+<h3>
+<span class="header-section-number">2.18.2</span> Scatterplot<a class="anchor" aria-label="anchor" href="#scatterplot"><i class="fas fa-link"></i></a>
+</h3>
+<p>Plot without warning and message</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">iris</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">)</span> <span class="co">## R will complain about this command</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672"></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">)</span> <span class="co">## According to the error, this was plotted using a different synthax</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-2.png" width="672"></div>
+</div>
+<div id="boxplot" class="section level3" number="2.18.3">
+<h3>
+<span class="header-section-number">2.18.3</span> Boxplot<a class="anchor" aria-label="anchor" href="#boxplot"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">iris</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/3.%20Boxplot-1.png" width="672"></div>
+</div>
+</div>
+<div id="data-visualization-with-specialized-libraries" class="section level2" number="2.19">
+<h2>
+<span class="header-section-number">2.19</span> Data Visualization with specialized libraries<a class="anchor" aria-label="anchor" href="#data-visualization-with-specialized-libraries"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>In R, there are packages designed with the purpose of making good-looking graphics. This is the case with the ggplot2. The chunk below installs the ggplot2 library, loads the library into the R environment and then plots the data present in the iris data-frame.</p></li>
+<li><p>You can uncomment the installation line if you need to install it</p></li>
+</ul>
+<div id="ggplot2" class="section level3" number="2.19.1">
+<h3>
+<span class="header-section-number">2.19.1</span> Ggplot2<a class="anchor" aria-label="anchor" href="#ggplot2"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#install.packages("ggplot2")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Sepal.Length</span>, y<span class="op">=</span><span class="va">Sepal.Width</span>, color<span class="op">=</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
+<p>In our activities to visualize human genomic data, we will use a library called qqman, to visualize the biological association, through a plot known as the Manhattan plot.</p>
+</div>
+<div id="visualizing-gwas" class="section level3" number="2.19.2">
+<h3>
+<span class="header-section-number">2.19.2</span> Visualizing GWAS<a class="anchor" aria-label="anchor" href="#visualizing-gwas"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>The simplest definition of a GWAS is the statistical or significant association between a phenotype (trait) and a genotype. This association can also be called <em>biological association</em>.</p></li>
+<li><p>Information about association of SNPs with Huntington’s Disease can be found at the Chaves 2019 Huntington’s disease paper</p></li>
+</ul>
+<div id="package-installation" class="section level4" number="2.19.2.1">
+<h4>
+<span class="header-section-number">2.19.2.1</span> Package installation<a class="anchor" aria-label="anchor" href="#package-installation"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>We need to install and load package qqman</li>
+</ul>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## install.packages("qqman")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stephenturner/qqman">qqman</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## </code></pre>
+<pre><code>## For example usage please run: vignette('qqman')</code></pre>
+<pre><code>## </code></pre>
+<pre><code>## Citation appreciated but not required:</code></pre>
+<pre><code>## Turner, (2018). qqman: an R package for visualizing GWAS results using Q-Q and manhattan plots. Journal of Open Source Software, 3(25), 731, https://doi.org/10.21105/joss.00731.</code></pre>
+<pre><code>## </code></pre>
+</div>
+<div id="assign-text-file-to-dataframe-object" class="section level4" number="2.19.2.2">
+<h4>
+<span class="header-section-number">2.19.2.2</span> Assign text file to dataframe object<a class="anchor" aria-label="anchor" href="#assign-text-file-to-dataframe-object"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li><p>After, we load data-frame to be visualized</p></li>
+<li><p>Exact location of text file in your system needs to be determined</p></li>
+</ul>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">GWAS_TABLE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"./data/chr4.txt"</span>, </span>
+<span>                         sep <span class="op">=</span> <span class="st">" "</span>,</span>
+<span>                         header <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="get-information-about-object-with-head" class="section level4" number="2.19.2.3">
+<h4>
+<span class="header-section-number">2.19.2.3</span> Get information about object with head()<a class="anchor" aria-label="anchor" href="#get-information-about-object-with-head"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>Use head() function to inspect the data-frame just loaded</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">GWAS_TABLE</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    CHR         SNP     BP         P
+## 1    4 chr4:128096 128096 0.0133500
+## 2    4 chr4:516586 516586 0.0076260
+## 3    4 chr4:523979 523979 0.0024960
+## 4    4 chr4:527217 527217 0.0217400
+## 5    4 chr4:566177 566177 0.0008988
+## 6    4 chr4:578679 578679 0.0162100
+## 7    4 chr4:578790 578790 0.0103700
+## 8    4 chr4:579307 579307 0.0334600
+## 9    4 chr4:580259 580259 0.0190400
+## 10   4 chr4:585318 585318 0.0317600</code></pre>
+</div>
+<div id="plotting-gwas-data-frame" class="section level4" number="2.19.2.4">
+<h4>
+<span class="header-section-number">2.19.2.4</span> Plotting GWAS data-frame<a class="anchor" aria-label="anchor" href="#plotting-gwas-data-frame"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li><p>In this section we use functions plot() and boxplot() to visualize data-frame</p></li>
+<li><p>In the y access, we see genomic coordinates and in the x access, p-valoues of the biological association</p></li>
+<li><p>Note that depending on the synthax used for plotting, R may complain</p></li>
+<li><p>Comments not turned off</p></li>
+</ul>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">GWAS_TABLE</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">BP</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">P</span><span class="op">)</span> <span class="co">## R complains</span></span></code></pre></div>
+<pre><code>## Warning in plot.window(...): "data" is not a graphical parameter</code></pre>
+<pre><code>## Warning in plot.xy(xy, type, ...): "data" is not a graphical parameter</code></pre>
+<pre><code>## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter
+## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter</code></pre>
+<pre><code>## Warning in box(...): "data" is not a graphical parameter</code></pre>
+<pre><code>## Warning in title(...): "data" is not a graphical parameter</code></pre>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/3.%20Gwas-1.png" width="672"></div>
+<ul>
+<li>Turn off comments</li>
+</ul>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">GWAS_TABLE</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">BP</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">P</span><span class="op">)</span> <span class="co">## R complains</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
+</div>
+<div id="plotting-gwas-data-frame-1" class="section level4" number="2.19.2.5">
+<h4>
+<span class="header-section-number">2.19.2.5</span> Plotting GWAS data-frame<a class="anchor" aria-label="anchor" href="#plotting-gwas-data-frame-1"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">BP</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">P</span><span class="op">)</span> <span class="co">## R does not complain</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
+</div>
+<div id="boxplot-1" class="section level4" number="2.19.2.6">
+<h4>
+<span class="header-section-number">2.19.2.6</span> Boxplot<a class="anchor" aria-label="anchor" href="#boxplot-1"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>Boxplot</li>
+</ul>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">GWAS_TABLE</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">BP</span>, <span class="va">GWAS_TABLE</span><span class="op">$</span><span class="va">P</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
+<ul>
+<li><p>Compare the chromosomal coordinates and the values of the p-values in the boxplot above</p></li>
+<li><p>The chunk below allows one to ommit NA values in data-frame</p></li>
+</ul>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">GWAS_TABLE_Ommit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">GWAS_TABLE</span><span class="op">)</span></span></code></pre></div>
+<p>A seguir, criamos uma variável que armazena as posições das SNPs a serem realçadas em verde no Manhattan plot. Estas SNPs são mutações biológica e estatisticamente associadas à Doença de Huntington no gene de uma sortilina, localizada em proximidade física ao gene da proteína huntingtina mutada, a qual é a causadora medeliana (segue as leis de segregação genética de Mendel) da Doença de Huntington.</p>
+</div>
+</div>
+</div>
+<div id="create-vector-to-highlight-genome-coordinates-in-manhattan-plot" class="section level2" number="2.20">
+<h2>
+<span class="header-section-number">2.20</span> Create vector to highlight genome coordinates in Manhattan plot<a class="anchor" aria-label="anchor" href="#create-vector-to-highlight-genome-coordinates-in-manhattan-plot"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">SNP_HIGHLIGHT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chr4:3043512"</span>,<span class="st">"chr4:3043513"</span>,<span class="st">"chr4:3048207"</span>,<span class="st">"chr4:3224216"</span>,</span>
+<span>                   <span class="st">"chr4:3231772"</span>,<span class="st">"chr4:3233844"</span>,<span class="st">"chr4:3235081"</span>,<span class="st">"chr4:3235084"</span>,</span>
+<span>                   <span class="st">"chr4:3236881"</span>,<span class="st">"chr4:3236883"</span>,<span class="st">"chr4:3241845"</span>,<span class="st">"chr4:3243804"</span>,</span>
+<span>                   <span class="st">"chr4:3263138"</span>,<span class="st">"chr4:3265130"</span>,<span class="st">"chr4:3265710"</span>,<span class="st">"chr4:3314646"</span>,</span>
+<span>                   <span class="st">"chr4:3380088"</span>,<span class="st">"chr4:3409359"</span>,<span class="st">"chr4:3411110"</span>,<span class="st">"chr4:3415336"</span>,</span>
+<span>                   <span class="st">"chr4:3415378"</span>,<span class="st">"chr4:3438643"</span>,<span class="st">"chr4:3446091"</span>,<span class="st">"chr4:3449886"</span>,</span>
+<span>                   <span class="st">"chr4:3473066"</span>,<span class="st">"chr4:3476809"</span>,<span class="st">"chr4:3480439"</span>,<span class="st">"chr4:3487151"</span>,</span>
+<span>                   <span class="st">"chr4:3496058"</span>,<span class="st">"chr4:3496110"</span>,<span class="st">"chr4:3506933"</span>,<span class="st">"chr4:3508752"</span>,</span>
+<span>                   <span class="st">"chr4:3510957"</span>,<span class="st">"chr4:3512690"</span>,<span class="st">"chr4:3517746"</span>,<span class="st">"chr4:3518190"</span>,</span>
+<span>                   <span class="st">"chr4:3529671"</span>,<span class="st">"chr4:3532327"</span>,<span class="st">"chr4:3533066"</span>,<span class="st">"chr4:3746133"</span>,</span>
+<span>                   <span class="st">"chr4:3747842"</span>,<span class="st">"chr4:3748134"</span>,<span class="st">"chr4:3765305"</span>,<span class="st">"chr4:3765336"</span>,</span>
+<span>                   <span class="st">"chr4:3944253"</span>,<span class="st">"chr4:3944752"</span>,<span class="st">"chr4:3944888"</span>,<span class="st">"chr4:3946166"</span>,</span>
+<span>                   <span class="st">"chr4:3946175"</span>,<span class="st">"chr4:3969218"</span>,<span class="st">"chr4:4051294"</span>,<span class="st">"chr4:4076788"</span>,</span>
+<span>                   <span class="st">"chr4:4103104"</span>,<span class="st">"chr4:4103105"</span>,<span class="st">"chr4:4109198"</span>,<span class="st">"chr4:4109210"</span>,</span>
+<span>                   <span class="st">"chr4:4240627"</span>,<span class="st">"chr4:4242705"</span>,<span class="st">"chr4:4243668"</span>,<span class="st">"chr4:4245210"</span>,</span>
+<span>                   <span class="st">"chr4:4245510"</span>,<span class="st">"chr4:4245513"</span>,<span class="st">"chr4:4245591"</span>,<span class="st">"chr4:4245926"</span>,</span>
+<span>                   <span class="st">"chr4:4245929"</span>,<span class="st">"chr4:4246109"</span>,<span class="st">"chr4:4246433"</span>,<span class="st">"chr4:4246453"</span>,</span>
+<span>                   <span class="st">"chr4:4246457"</span>,<span class="st">"chr4:4246497"</span>,<span class="st">"chr4:4249414"</span>,<span class="st">"chr4:4249415"</span>,</span>
+<span>                   <span class="st">"chr4:4249484"</span>,<span class="st">"chr4:4271623"</span>,<span class="st">"chr4:4275306"</span>,<span class="st">"chr4:4304749"</span>,</span>
+<span>                   <span class="st">"chr4:4318931"</span>,<span class="st">"chr4:4318970"</span>,<span class="st">"chr4:4319564"</span>,<span class="st">"chr4:4319728"</span>,</span>
+<span>                   <span class="st">"chr4:4319750"</span>,<span class="st">"chr4:4322078"</span>,<span class="st">"chr4:4709657"</span>,<span class="st">"chr4:4732282"</span>,</span>
+<span>                   <span class="st">"chr4:4789635"</span>,<span class="st">"chr4:4822960"</span>,<span class="st">"chr4:4824890"</span>,<span class="st">"chr4:4825092"</span>,</span>
+<span>                   <span class="st">"chr4:4825180"</span>,<span class="st">"chr4:4865316"</span>,<span class="st">"chr4:4865321"</span>,<span class="st">"chr4:5018702"</span>,</span>
+<span>                   <span class="st">"chr4:5812778"</span>,<span class="st">"chr4:5814082"</span>,<span class="st">"chr4:5833660"</span>,<span class="st">"chr4:5833899"</span>,</span>
+<span>                   <span class="st">"chr4:5835541"</span>,<span class="st">"chr4:5851205"</span>,<span class="st">"chr4:5862752"</span>,<span class="st">"chr4:5862938"</span>,</span>
+<span>                   <span class="st">"chr4:5862943"</span>,<span class="st">"chr4:5901873"</span>,<span class="st">"chr4:5905499"</span>,<span class="st">"chr4:5906287"</span>,</span>
+<span>                   <span class="st">"chr4:6018891"</span>,<span class="st">"chr4:6019046"</span>,<span class="st">"chr4:6020190"</span>,<span class="st">"chr4:6020367"</span>,</span>
+<span>                   <span class="st">"chr4:6025638"</span>,<span class="st">"chr4:6025656"</span>,<span class="st">"chr4:6025766"</span>,<span class="st">"chr4:6026058"</span>,</span>
+<span>                   <span class="st">"chr4:6083488"</span>,<span class="st">"chr4:6204935"</span>,<span class="st">"chr4:6235553"</span>,<span class="st">"chr4:6237142"</span>,</span>
+<span>                   <span class="st">"chr4:6238466"</span>,<span class="st">"chr4:6239906"</span>,<span class="st">"chr4:6240929"</span>,<span class="st">"chr4:6245022"</span>,</span>
+<span>                   <span class="st">"chr4:6245618"</span>,<span class="st">"chr4:6245732"</span>,<span class="st">"chr4:6245915"</span>,<span class="st">"chr4:6246075"</span>,</span>
+<span>                   <span class="st">"chr4:6246373"</span>,<span class="st">"chr4:6246959"</span>,<span class="st">"chr4:6290594"</span>,<span class="st">"chr4:6292020"</span>,</span>
+<span>                   <span class="st">"chr4:6294095"</span>,<span class="st">"chr4:6298375"</span>,<span class="st">"chr4:6316092"</span>,<span class="st">"chr4:6321396"</span>,</span>
+<span>                   <span class="st">"chr4:6324647"</span>,<span class="st">"chr4:6324785"</span>,<span class="st">"chr4:6327669"</span>,<span class="st">"chr4:6328354"</span>,</span>
+<span>                   <span class="st">"chr4:6328507"</span>,<span class="st">"chr4:6333130"</span>,<span class="st">"chr4:6333559"</span>,<span class="st">"chr4:6333669"</span>,</span>
+<span>                   <span class="st">"chr4:6335966"</span>,<span class="st">"chr4:6435341"</span>,<span class="st">"chr4:6435486"</span>,<span class="st">"chr4:6435926"</span>,</span>
+<span>                   <span class="st">"chr4:6437191"</span>,<span class="st">"chr4:6437197"</span>,<span class="st">"chr4:6457121"</span>,<span class="st">"chr4:6457131"</span>,</span>
+<span>                   <span class="st">"chr4:6457132"</span>,<span class="st">"chr4:6568390"</span>,<span class="st">"chr4:6570032"</span>,<span class="st">"chr4:6570768"</span>,</span>
+<span>                   <span class="st">"chr4:6596360"</span>,<span class="st">"chr4:6613252"</span>,<span class="st">"chr4:6613462"</span>,<span class="st">"chr4:6620991"</span>,</span>
+<span>                   <span class="st">"chr4:6624771"</span>,<span class="st">"chr4:6626154"</span>,<span class="st">"chr4:6641969"</span>,<span class="st">"chr4:6642090"</span>,</span>
+<span>                   <span class="st">"chr4:6644466"</span>,<span class="st">"chr4:6644467"</span>,<span class="st">"chr4:6644468"</span>,<span class="st">"chr4:6647889"</span>,</span>
+<span>                   <span class="st">"chr4:6648300"</span>,<span class="st">"chr4:6662665"</span>,<span class="st">"chr4:6663319"</span>,<span class="st">"chr4:6663715"</span>,</span>
+<span>                   <span class="st">"chr4:6674554"</span>,<span class="st">"chr4:6678553"</span>,<span class="st">"chr4:6678599"</span>,<span class="st">"chr4:6690535"</span>,</span>
+<span>                   <span class="st">"chr4:6698664"</span>,<span class="st">"chr4:6698667"</span>,<span class="st">"chr4:6698706"</span>,<span class="st">"chr4:6720572"</span>,</span>
+<span>                   <span class="st">"chr4:6911679"</span>,<span class="st">"chr4:6985889"</span>,<span class="st">"chr4:6987394"</span>,<span class="st">"chr4:7002344"</span>,</span>
+<span>                   <span class="st">"chr4:7004495"</span>,<span class="st">"chr4:7004506"</span>,<span class="st">"chr4:7005196"</span>,<span class="st">"chr4:7005199"</span>,</span>
+<span>                   <span class="st">"chr4:7024077"</span>,<span class="st">"chr4:7024398"</span>,<span class="st">"chr4:7029430"</span>,<span class="st">"chr4:7031064"</span>,</span>
+<span>                   <span class="st">"chr4:7044357"</span>,<span class="st">"chr4:7044380"</span>,<span class="st">"chr4:7048842"</span>,<span class="st">"chr4:7052115"</span>,</span>
+<span>                   <span class="st">"chr4:7055253"</span>,<span class="st">"chr4:7064243"</span>,<span class="st">"chr4:7067765"</span>,<span class="st">"chr4:7073187"</span>,</span>
+<span>                   <span class="st">"chr4:7074027"</span>,<span class="st">"chr4:7677967"</span>,<span class="st">"chr4:7701947"</span>,<span class="st">"chr4:7702795"</span>,</span>
+<span>                   <span class="st">"chr4:7703505"</span>,<span class="st">"chr4:7703807"</span>,<span class="st">"chr4:7704795"</span>,<span class="st">"chr4:7704818"</span>,</span>
+<span>                   <span class="st">"chr4:7709703"</span>,<span class="st">"chr4:7712150"</span>,<span class="st">"chr4:7714490"</span>,<span class="st">"chr4:7733843"</span>,</span>
+<span>                   <span class="st">"chr4:7735162"</span>,<span class="st">"chr4:7735164"</span>,<span class="st">"chr4:7736103"</span>,<span class="st">"chr4:7736112"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="biological-association-visualization-manhattan-plot" class="section level2" number="2.21">
+<h2>
+<span class="header-section-number">2.21</span> Biological Association Visualization: Manhattan Plot<a class="anchor" aria-label="anchor" href="#biological-association-visualization-manhattan-plot"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Finally, we plot the Manhattanh plot graph</li>
+</ul>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/qqman/man/manhattan.html">manhattan</a></span><span class="op">(</span><span class="va">GWAS_TABLE_Ommit</span>, </span>
+<span>          highlight <span class="op">=</span> <span class="va">SNP_HIGHLIGHT</span>, </span>
+<span>          annotateTop <span class="op">=</span> <span class="cn">T</span>, </span>
+<span>          annotatePval <span class="op">=</span> <span class="fl">0.20</span>, </span>
+<span>          genomewideline <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fl">0.0001</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/3.%20manhattan%20plot-1.png" width="672"></div>
+</div>
+<div id="references" class="section level2" number="2.22">
+<h2>
+<span class="header-section-number">2.22</span> References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
+</h2>
+<div id="refs">
+
+</div>
+</div>
+<div id="session-info" class="section level2" number="2.23">
+<h2>
+<span class="header-section-number">2.23</span> Session Info<a class="anchor" aria-label="anchor" href="#session-info"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## R version 4.4.1 (2024-06-14)
+## Platform: aarch64-apple-darwin20
+## Running under: macOS 15.7.4
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## time zone: America/Chicago
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] qqman_0.1.9   ggplot2_3.5.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] gtable_0.3.5      jsonlite_1.8.9    dplyr_1.1.4       compiler_4.4.1   
+##  [5] highr_0.11        tidyselect_1.2.1  xml2_1.3.6        jquerylib_0.1.4  
+##  [9] scales_1.3.0      yaml_2.3.10       fastmap_1.2.0     R6_2.5.1         
+## [13] labeling_0.4.3    generics_0.1.3    knitr_1.48        MASS_7.3-61      
+## [17] tibble_3.2.1      bookdown_0.40     munsell_0.5.1     bslib_0.8.0      
+## [21] pillar_1.9.0      rlang_1.1.4       utf8_1.2.4        calibrate_1.7.7  
+## [25] cachem_1.1.0      xfun_0.48         fs_1.6.4          sass_0.4.9       
+## [29] memoise_2.0.1     cli_3.6.3         withr_3.0.1       magrittr_2.0.3   
+## [33] digest_0.6.37     grid_4.4.1        rstudioapi_0.16.0 lifecycle_1.0.4  
+## [37] vctrs_0.6.5       downlit_0.4.4     evaluate_1.0.0    glue_1.8.0       
+## [41] farver_2.1.2      fansi_1.0.6       colorspace_2.1-1  rmarkdown_2.28   
+## [45] tools_4.4.1       pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Prerequisites</a></div>
+<div class="next"><a href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#basics-of-r"><span class="header-section-number">2</span> Basics of R</a></li>
+<li><a class="nav-link" href="#basic-steps"><span class="header-section-number">2.1</span> Basic Steps</a></li>
+<li><a class="nav-link" href="#library-iswr"><span class="header-section-number">2.2</span> Library ISwR</a></li>
+<li><a class="nav-link" href="#plot-random-numbers"><span class="header-section-number">2.3</span> Plot Random Numbers</a></li>
+<li><a class="nav-link" href="#a-potent-calculator"><span class="header-section-number">2.4</span> A Potent Calculator</a></li>
+<li><a class="nav-link" href="#assignments"><span class="header-section-number">2.5</span> Assignments</a></li>
+<li><a class="nav-link" href="#operations-after-assignment-of-variable"><span class="header-section-number">2.6</span> Operations after assignment of variable</a></li>
+<li><a class="nav-link" href="#vectorized-arithmetic"><span class="header-section-number">2.7</span> Vectorized Arithmetic</a></li>
+<li><a class="nav-link" href="#calculate-the-mean-of-the-variable-weight"><span class="header-section-number">2.8</span> Calculate the Mean of the variable weight</a></li>
+<li><a class="nav-link" href="#calculate-the-standard-deviation-of-the-variable-weight"><span class="header-section-number">2.9</span> Calculate the Standard-Deviation of the variable weight</a></li>
+<li><a class="nav-link" href="#calculation-of-the-standard-deviation"><span class="header-section-number">2.10</span> Calculation of the Standard Deviation</a></li>
+<li><a class="nav-link" href="#standard-statistical-procedures"><span class="header-section-number">2.11</span> Standard Statistical Procedures</a></li>
+<li><a class="nav-link" href="#standard-statistical-procedures-t-test"><span class="header-section-number">2.12</span> Standard Statistical Procedures: t-test</a></li>
+<li><a class="nav-link" href="#plot-graphics"><span class="header-section-number">2.13</span> Plot Graphics</a></li>
+<li><a class="nav-link" href="#plot-graphics-modifying-the-plotting-character"><span class="header-section-number">2.14</span> Plot Graphics Modifying the plotting character</a></li>
+<li><a class="nav-link" href="#plot-an-expected-line-for-weights-at-bmi-of-22.5"><span class="header-section-number">2.15</span> Plot an expected Line for weights at BMI of 22.5</a></li>
+<li><a class="nav-link" href="#vectors"><span class="header-section-number">2.16</span> Vectors</a></li>
+<li>
+<a class="nav-link" href="#using-other-libraries"><span class="header-section-number">2.17</span> Using other libraries</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-iris-data-frame"><span class="header-section-number">2.17.1</span> The iris data-frame</a></li>
+<li><a class="nav-link" href="#more-visualization-of-the-iris-dataset"><span class="header-section-number">2.17.2</span> More Visualization of the iris dataset</a></li>
+<li><a class="nav-link" href="#basic-r-functions"><span class="header-section-number">2.17.3</span> Basic R functions</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#more-visualization"><span class="header-section-number">2.18</span> More Visualization</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#scatterplot-includes-warnings"><span class="header-section-number">2.18.1</span> Scatterplot (includes warnings)</a></li>
+<li><a class="nav-link" href="#scatterplot"><span class="header-section-number">2.18.2</span> Scatterplot</a></li>
+<li><a class="nav-link" href="#boxplot"><span class="header-section-number">2.18.3</span> Boxplot</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#data-visualization-with-specialized-libraries"><span class="header-section-number">2.19</span> Data Visualization with specialized libraries</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ggplot2"><span class="header-section-number">2.19.1</span> Ggplot2</a></li>
+<li><a class="nav-link" href="#visualizing-gwas"><span class="header-section-number">2.19.2</span> Visualizing GWAS</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#create-vector-to-highlight-genome-coordinates-in-manhattan-plot"><span class="header-section-number">2.20</span> Create vector to highlight genome coordinates in Manhattan plot</a></li>
+<li><a class="nav-link" href="#biological-association-visualization-manhattan-plot"><span class="header-section-number">2.21</span> Biological Association Visualization: Manhattan Plot</a></li>
+<li><a class="nav-link" href="#references"><span class="header-section-number">2.22</span> References</a></li>
+<li><a class="nav-link" href="#session-info"><span class="header-section-number">2.23</span> Session Info</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Research in Computational Biology book</strong>" was written by Gepoliano Chaves. It was last built on 2026-03-30.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

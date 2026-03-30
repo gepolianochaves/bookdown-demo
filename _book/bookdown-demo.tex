@@ -1,0 +1,1916 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Research in Computational Biology book},
+  pdfauthor={Gepoliano Chaves},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Research in Computational Biology book}
+\author{Gepoliano Chaves}
+\date{2026-03-30}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter{Prerequisites}\label{prerequisites}
+
+This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\).
+
+The \textbf{bookdown} package can be installed from CRAN or Github:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
+\CommentTok{\# or the development version}
+\CommentTok{\# devtools::install\_github("rstudio/bookdown")}
+\end{Highlighting}
+\end{Shaded}
+
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
+
+To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.org/tinytex/}.
+
+\chapter{Basics of R}\label{basics-of-r}
+
+\section{Basic Steps}\label{basic-steps}
+
+\begin{itemize}
+\item
+  R can be accessed by clicking an icon or entering the command ``R'' at the system command line, also refered to as Terminal
+\item
+  This produces a console window or causes R to start up as an interactive program at the current terminal window
+\item
+  R works fundamentally by a question-and-answer model: enter a line with a command and press Enter
+\item
+  Then the program does something relevant
+\item
+  In this course, we will use RStudio and a file format called R Markdown, which allows us to code using not only R, but bash and Python, two other languages we may refer to as the course progresses
+\end{itemize}
+
+\section{Library ISwR}\label{library-iswr}
+
+\begin{itemize}
+\item
+  This notebook used the book Introductory Statistics with R, by Peter Dalgaard as a reference
+\item
+  For the book, R library ISwR (Introductory Statistics with R) can be freely downloaded
+\item
+  All examples in the book used as reference should run provided that ISwR library is not only installed by also loaded into the current search path
+\item
+  Library can be installed and loaded by typing the following command into an R chunk
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"ISwR"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"ISwR"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Plot Random Numbers}\label{plot-random-numbers}
+
+\begin{itemize}
+\item
+  For a first impression of what R can do, let´s try plotting a graph
+\item
+  Need to insert the R chunk and use the plot function
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-3-1.pdf}}
+
+\section{A Potent Calculator}\label{a-potent-calculator}
+
+\begin{itemize}
+\tightlist
+\item
+  R can process simple and complex arithmetic expression and produce a result for the user
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \SpecialCharTok{+} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  R can also be used to do other standard calculations. Here is how to calculate e to the power of -2
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1353353
+\end{verbatim}
+
+\begin{itemize}
+\item
+  Other than the R chunks, these calculations can be made using the RStudio Console
+\item
+  In RStusio, when using the R Markdown format (.Rmd), we can insert R, Bash (terminal) and Python chunks
+\item
+  Proceed to illustrate that in the RStudio IDE
+\end{itemize}
+
+\section{Assignments}\label{assignments}
+
+\begin{itemize}
+\item
+  Assignments are made based on the necessity to store the results of calculations and use these results in downstream processing steps in an entire algorithm or pipeline
+\item
+  Like other languages, R has symbolic \textbf{variables}: names that can be used to represent values
+\item
+  To assign the value 2 to variable x, we can enter the following command
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  The character \textless- is called the assignment operator
+\item
+  There is no immediate visible result, but from now on, x has the value 2 and can be used in subsequent arithmetic operations
+\item
+  We can ``ask'' R which value is stores in the x variable
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\section{Operations after assignment of variable}\label{operations-after-assignment-of-variable}
+
+\begin{itemize}
+\tightlist
+\item
+  Below, our variable x, is used to perform other calculations
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Addition
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\SpecialCharTok{+}\NormalTok{ x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Multiplication
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5}\SpecialCharTok{*}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Potentiation
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{3} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\section{Vectorized Arithmetic}\label{vectorized-arithmetic}
+
+\begin{itemize}
+\item
+  It is not useful to use one number at a time to run statistics
+\item
+  One strenght of R is that it can handle entire data vectors as single objects
+\item
+  A data vector is an array of numbers and a vector variable can be constructed like this
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weight }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{57}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{95}\NormalTok{, }\DecValTok{72}\NormalTok{)}
+
+\DocumentationTok{\#\# To look at the vector variable, just type its name again}
+\NormalTok{weight}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 60 72 57 90 95 72
+\end{verbatim}
+
+\begin{itemize}
+\item
+  You can do calculations with vectors just like ordinary numbers, so long as they have the same length
+\item
+  One exception to this rule that we will see will be when we use the mean of weigths of persons (represented by xbar)
+\item
+  In that case, the mean will be one single number, which will be subtracted from each sample value
+\item
+  Suppose the weight vector indicates the weight of men in kilograms
+\item
+  One simple formula to indicate whether a person is obese or not, is the body mass index (BMI)
+\item
+  BMI is calculated by dividing the person´s weight by the square of their height, in meters
+\item
+  Therefore, in R, we need to have a vector with the height values to calculate the bmi vector, containing the body-mass index for the individuals indicated in the weight vector
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{height }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.75}\NormalTok{, }\FloatTok{1.80}\NormalTok{, }\FloatTok{1.65}\NormalTok{, }\FloatTok{1.90}\NormalTok{, }\FloatTok{1.74}\NormalTok{, }\FloatTok{1.91}\NormalTok{)}
+\NormalTok{bmi }\OtherTok{\textless{}{-}}\NormalTok{ weight}\SpecialCharTok{/}\NormalTok{height}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{bmi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.59184 22.22222 20.93664 24.93075 31.37799 19.73630
+\end{verbatim}
+
+\section{Calculate the Mean of the variable weight}\label{calculate-the-mean-of-the-variable-weight}
+
+\begin{itemize}
+\tightlist
+\item
+  The mean is calculated by the sum of the observations divided by the total number of observations
+\end{itemize}
+
+\(\overline{x}\) = \(\sum x_i\) /n
+
+\begin{itemize}
+\tightlist
+\item
+  Let´s calculate the mean of the variable weight
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 446
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(weight)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 74.33333
+\end{verbatim}
+
+\section{Calculate the Standard-Deviation of the variable weight}\label{calculate-the-standard-deviation-of-the-variable-weight}
+
+\begin{itemize}
+\tightlist
+\item
+  Standard-deviation can be calculated with the following equation
+\end{itemize}
+
+\[ SD = \sqrt{(\sum (x_i - \overline{x})^2)/(n-1)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  xbar, the mean of variable weight, can be calculated using the sum and length of variable weight
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(weight)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(weight)}
+\NormalTok{xbar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 74.33333
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Now we can calculate the difference of each replicate in the weight variable and the mean of the weight variable, one by one
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weight }\SpecialCharTok{{-}}\NormalTok{ xbar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -14.333333  -2.333333 -17.333333  15.666667  20.666667  -2.333333
+\end{verbatim}
+
+\begin{itemize}
+\item
+  Notice how R uses xbar, which has length one, to calculate the new weight - xbar data vector
+\item
+  xbar is recycled and subracted from every element in the weight variable (weight data vector)
+\end{itemize}
+
+\section{Calculation of the Standard Deviation}\label{calculation-of-the-standard-deviation}
+
+\begin{itemize}
+\tightlist
+\item
+  Calculate the squared deviations
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(weight }\SpecialCharTok{{-}}\NormalTok{ xbar)}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 205.444444   5.444444 300.444444 245.444444 427.111111   5.444444
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Calculate the sum of squared deviations
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{((weight }\SpecialCharTok{{-}}\NormalTok{ xbar)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1189.333
+\end{verbatim}
+
+Calculate the standard deviation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}
+  \FunctionTok{sum}\NormalTok{(}
+\NormalTok{    (weight }\SpecialCharTok{{-}}\NormalTok{ xbar)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}
+\NormalTok{      (}\FunctionTok{length}\NormalTok{(weight)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15.42293
+\end{verbatim}
+
+\section{Standard Statistical Procedures}\label{standard-statistical-procedures}
+
+\begin{itemize}
+\item
+  It is a standard medical practice to access whether a person is obese or not using validated scientific criteria
+\item
+  As a simple procedure to show this concept, let's assume that an individual with a normal weight should have a BMI in the range 20-25
+\item
+  We want to know if our data deviates from the normal range of BMI
+\item
+  In R, this can be done using a statistical test called t-test
+\item
+  You do not need to understand what a t-test is, just remember that is is used to evaluate the distribution of sample values compared to the normal distribution
+\item
+  You can use a one-sample t-test to assess whether the six persons' BMI can be assumed to have mean 22.5 given that they come from a normal distribution
+\item
+  You can do that using the function t.test
+\end{itemize}
+
+\section{Standard Statistical Procedures: t-test}\label{standard-statistical-procedures-t-test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}
+\NormalTok{  bmi,}
+  \AttributeTok{mu =} \FloatTok{22.5}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  bmi
+## t = 0.34488, df = 5, p-value = 0.7442
+## alternative hypothesis: true mean is not equal to 22.5
+## 95 percent confidence interval:
+##  18.41734 27.84791
+## sample estimates:
+## mean of x 
+##  23.13262
+\end{verbatim}
+
+\section{Plot Graphics}\label{plot-graphics}
+
+\begin{itemize}
+\tightlist
+\item
+  Let's now plot a scatterplot of the height and weight of individuals
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(height, weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-19-1.pdf}}
+
+\section{Plot Graphics Modifying the plotting character}\label{plot-graphics-modifying-the-plotting-character}
+
+\begin{itemize}
+\item
+  You will frequently want to modify drawing of your graphs in various ways
+\item
+  One way is usig the parameter ``plotting character'', pch
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(height, weight, }\AttributeTok{pch =}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-20-1.pdf}}
+
+\section{Plot an expected Line for weights at BMI of 22.5}\label{plot-an-expected-line-for-weights-at-bmi-of-22.5}
+
+\begin{itemize}
+\tightlist
+\item
+  The term for weight at BMI of 22.5 is:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{22.5}\SpecialCharTok{*}\NormalTok{(height)}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  This term can be used to compute the line of expected weights at a BMI of 22.5 using the lines() function
+\item
+  As a note, we can't use the lines() function without first creating a plot in R.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(height, weight, }\AttributeTok{pch =}\DecValTok{2}\NormalTok{)}
+\NormalTok{hh }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.65}\NormalTok{, }\FloatTok{1.70}\NormalTok{, }\FloatTok{1.75}\NormalTok{, }\FloatTok{1.80}\NormalTok{, }\FloatTok{1.85}\NormalTok{, }\FloatTok{1.90}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(hh, }\FloatTok{22.5} \SpecialCharTok{*}\NormalTok{ (hh)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-22-1.pdf}}
+
+\section{Vectors}\label{vectors}
+
+\begin{itemize}
+\item
+  The weight and height vectors are called numeric vectors
+\item
+  Besides numeric vectors, there are numeric and character vectors
+\end{itemize}
+
+\section{Using other libraries}\label{using-other-libraries}
+
+\subsection{The iris data-frame}\label{the-iris-data-frame}
+
+\begin{itemize}
+\item
+  Now we have a better understanding of what R can give us, let us use another library more commonly used datasets
+\item
+  At times, it is possible that you will need to figure out different ways to install a library to use it
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(datasets)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  In the next chunk, we access the iris data, and look at a summary of the dataset
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(iris)}
+\FunctionTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Another form to look at the iris data-frame is typing its name
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica
+\end{verbatim}
+
+\subsection{More Visualization of the iris dataset}\label{more-visualization-of-the-iris-dataset}
+
+These are basic R functions that allow us to get general information about a dataframe:
+
+\begin{itemize}
+\tightlist
+\item
+  dim()
+\item
+  head()
+\item
+  View()
+\item
+  class()
+\item
+  str()
+\end{itemize}
+
+\subsection{Basic R functions}\label{basic-r-functions}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(iris)}
+\FunctionTok{head}\NormalTok{(iris)}
+\FunctionTok{View}\NormalTok{(iris)}
+\FunctionTok{class}\NormalTok{(iris)}
+\FunctionTok{str}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Select the number of lines to visualize with the head command
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(iris, }\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Determine the number of columns and rows in the dataframe:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 150   5
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Determine the class() that the dataset belongs to
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\section{More Visualization}\label{more-visualization}
+
+\subsection{Scatterplot (includes warnings)}\label{scatterplot-includes-warnings}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\AttributeTok{data=}\NormalTok{iris, iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, iris}\SpecialCharTok{$}\NormalTok{Sepal.Width) }\DocumentationTok{\#\# R will complain about this command}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in plot.window(...): "data" is not a graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in plot.xy(xy, type, ...): "data" is not a graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter
+## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in box(...): "data" is not a graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): "data" is not a graphical parameter
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-30-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, iris}\SpecialCharTok{$}\NormalTok{Sepal.Width) }\DocumentationTok{\#\# According to the error, this was plotted using a different synthax}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-30-2.pdf}}
+
+\subsection{Scatterplot}\label{scatterplot}
+
+Plot without warning and message
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\AttributeTok{data=}\NormalTok{iris, iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, iris}\SpecialCharTok{$}\NormalTok{Sepal.Width) }\DocumentationTok{\#\# R will complain about this command}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-31-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, iris}\SpecialCharTok{$}\NormalTok{Sepal.Width) }\DocumentationTok{\#\# According to the error, this was plotted using a different synthax}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-31-2.pdf}}
+
+\subsection{Boxplot}\label{boxplot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{iris, iris}\SpecialCharTok{$}\NormalTok{Sepal.Length, iris}\SpecialCharTok{$}\NormalTok{Sepal.Width)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/3. Boxplot-1.pdf}}
+
+\section{Data Visualization with specialized libraries}\label{data-visualization-with-specialized-libraries}
+
+\begin{itemize}
+\item
+  In R, there are packages designed with the purpose of making good-looking graphics. This is the case with the ggplot2. The chunk below installs the ggplot2 library, loads the library into the R environment and then plots the data present in the iris data-frame.
+\item
+  You can uncomment the installation line if you need to install it
+\end{itemize}
+
+\subsection{Ggplot2}\label{ggplot2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("ggplot2")}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{iris, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Sepal.Length, }\AttributeTok{y=}\NormalTok{Sepal.Width, }\AttributeTok{color=}\NormalTok{Species)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-32-1.pdf}}
+
+In our activities to visualize human genomic data, we will use a library called qqman, to visualize the biological association, through a plot known as the Manhattan plot.
+
+\subsection{Visualizing GWAS}\label{visualizing-gwas}
+
+\begin{itemize}
+\item
+  The simplest definition of a GWAS is the statistical or significant association between a phenotype (trait) and a genotype. This association can also be called \emph{biological association}.
+\item
+  Information about association of SNPs with Huntington's Disease can be found at the Chaves 2019 Huntington's disease paper
+\end{itemize}
+
+\subsubsection{Package installation}\label{package-installation}
+
+\begin{itemize}
+\tightlist
+\item
+  We need to install and load package qqman
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# install.packages("qqman")}
+\FunctionTok{library}\NormalTok{(qqman)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+\end{verbatim}
+
+\begin{verbatim}
+## For example usage please run: vignette('qqman')
+\end{verbatim}
+
+\begin{verbatim}
+## 
+\end{verbatim}
+
+\begin{verbatim}
+## Citation appreciated but not required:
+\end{verbatim}
+
+\begin{verbatim}
+## Turner, (2018). qqman: an R package for visualizing GWAS results using Q-Q and manhattan plots. Journal of Open Source Software, 3(25), 731, https://doi.org/10.21105/joss.00731.
+\end{verbatim}
+
+\begin{verbatim}
+## 
+\end{verbatim}
+
+\subsubsection{Assign text file to dataframe object}\label{assign-text-file-to-dataframe-object}
+
+\begin{itemize}
+\item
+  After, we load data-frame to be visualized
+\item
+  Exact location of text file in your system needs to be determined
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GWAS\_TABLE }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"./data/chr4.txt"}\NormalTok{, }
+                         \AttributeTok{sep =} \StringTok{" "}\NormalTok{,}
+                         \AttributeTok{header =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Get information about object with head()}\label{get-information-about-object-with-head}
+
+\begin{itemize}
+\tightlist
+\item
+  Use head() function to inspect the data-frame just loaded
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(GWAS\_TABLE, }\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    CHR         SNP     BP         P
+## 1    4 chr4:128096 128096 0.0133500
+## 2    4 chr4:516586 516586 0.0076260
+## 3    4 chr4:523979 523979 0.0024960
+## 4    4 chr4:527217 527217 0.0217400
+## 5    4 chr4:566177 566177 0.0008988
+## 6    4 chr4:578679 578679 0.0162100
+## 7    4 chr4:578790 578790 0.0103700
+## 8    4 chr4:579307 579307 0.0334600
+## 9    4 chr4:580259 580259 0.0190400
+## 10   4 chr4:585318 585318 0.0317600
+\end{verbatim}
+
+\subsubsection{Plotting GWAS data-frame}\label{plotting-gwas-data-frame}
+
+\begin{itemize}
+\item
+  In this section we use functions plot() and boxplot() to visualize data-frame
+\item
+  In the y access, we see genomic coordinates and in the x access, p-valoues of the biological association
+\item
+  Note that depending on the synthax used for plotting, R may complain
+\item
+  Comments not turned off
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\AttributeTok{data=}\NormalTok{GWAS\_TABLE, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{BP, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{P) }\DocumentationTok{\#\# R complains}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in plot.window(...): "data" is not a graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in plot.xy(xy, type, ...): "data" is not a graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter
+## Warning in axis(side = side, at = at, labels = labels, ...): "data" is not a
+## graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in box(...): "data" is not a graphical parameter
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): "data" is not a graphical parameter
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/3. Gwas-1.pdf}}
+
+\begin{itemize}
+\tightlist
+\item
+  Turn off comments
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\AttributeTok{data=}\NormalTok{GWAS\_TABLE, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{BP, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{P) }\DocumentationTok{\#\# R complains}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-36-1.pdf}}
+
+\subsubsection{Plotting GWAS data-frame}\label{plotting-gwas-data-frame-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{BP, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{P) }\DocumentationTok{\#\# R does not complain}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-37-1.pdf}}
+
+\subsubsection{Boxplot}\label{boxplot-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Boxplot
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{GWAS\_TABLE, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{BP, GWAS\_TABLE}\SpecialCharTok{$}\NormalTok{P)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-38-1.pdf}}
+
+\begin{itemize}
+\item
+  Compare the chromosomal coordinates and the values of the p-values in the boxplot above
+\item
+  The chunk below allows one to ommit NA values in data-frame
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GWAS\_TABLE\_Ommit }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(GWAS\_TABLE)}
+\end{Highlighting}
+\end{Shaded}
+
+A seguir, criamos uma variável que armazena as posições das SNPs a serem realçadas em verde no Manhattan plot. Estas SNPs são mutações biológica e estatisticamente associadas à Doença de Huntington no gene de uma sortilina, localizada em proximidade física ao gene da proteína huntingtina mutada, a qual é a causadora medeliana (segue as leis de segregação genética de Mendel) da Doença de Huntington.
+
+\section{Create vector to highlight genome coordinates in Manhattan plot}\label{create-vector-to-highlight-genome-coordinates-in-manhattan-plot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SNP\_HIGHLIGHT }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"chr4:3043512"}\NormalTok{,}\StringTok{"chr4:3043513"}\NormalTok{,}\StringTok{"chr4:3048207"}\NormalTok{,}\StringTok{"chr4:3224216"}\NormalTok{,}
+                   \StringTok{"chr4:3231772"}\NormalTok{,}\StringTok{"chr4:3233844"}\NormalTok{,}\StringTok{"chr4:3235081"}\NormalTok{,}\StringTok{"chr4:3235084"}\NormalTok{,}
+                   \StringTok{"chr4:3236881"}\NormalTok{,}\StringTok{"chr4:3236883"}\NormalTok{,}\StringTok{"chr4:3241845"}\NormalTok{,}\StringTok{"chr4:3243804"}\NormalTok{,}
+                   \StringTok{"chr4:3263138"}\NormalTok{,}\StringTok{"chr4:3265130"}\NormalTok{,}\StringTok{"chr4:3265710"}\NormalTok{,}\StringTok{"chr4:3314646"}\NormalTok{,}
+                   \StringTok{"chr4:3380088"}\NormalTok{,}\StringTok{"chr4:3409359"}\NormalTok{,}\StringTok{"chr4:3411110"}\NormalTok{,}\StringTok{"chr4:3415336"}\NormalTok{,}
+                   \StringTok{"chr4:3415378"}\NormalTok{,}\StringTok{"chr4:3438643"}\NormalTok{,}\StringTok{"chr4:3446091"}\NormalTok{,}\StringTok{"chr4:3449886"}\NormalTok{,}
+                   \StringTok{"chr4:3473066"}\NormalTok{,}\StringTok{"chr4:3476809"}\NormalTok{,}\StringTok{"chr4:3480439"}\NormalTok{,}\StringTok{"chr4:3487151"}\NormalTok{,}
+                   \StringTok{"chr4:3496058"}\NormalTok{,}\StringTok{"chr4:3496110"}\NormalTok{,}\StringTok{"chr4:3506933"}\NormalTok{,}\StringTok{"chr4:3508752"}\NormalTok{,}
+                   \StringTok{"chr4:3510957"}\NormalTok{,}\StringTok{"chr4:3512690"}\NormalTok{,}\StringTok{"chr4:3517746"}\NormalTok{,}\StringTok{"chr4:3518190"}\NormalTok{,}
+                   \StringTok{"chr4:3529671"}\NormalTok{,}\StringTok{"chr4:3532327"}\NormalTok{,}\StringTok{"chr4:3533066"}\NormalTok{,}\StringTok{"chr4:3746133"}\NormalTok{,}
+                   \StringTok{"chr4:3747842"}\NormalTok{,}\StringTok{"chr4:3748134"}\NormalTok{,}\StringTok{"chr4:3765305"}\NormalTok{,}\StringTok{"chr4:3765336"}\NormalTok{,}
+                   \StringTok{"chr4:3944253"}\NormalTok{,}\StringTok{"chr4:3944752"}\NormalTok{,}\StringTok{"chr4:3944888"}\NormalTok{,}\StringTok{"chr4:3946166"}\NormalTok{,}
+                   \StringTok{"chr4:3946175"}\NormalTok{,}\StringTok{"chr4:3969218"}\NormalTok{,}\StringTok{"chr4:4051294"}\NormalTok{,}\StringTok{"chr4:4076788"}\NormalTok{,}
+                   \StringTok{"chr4:4103104"}\NormalTok{,}\StringTok{"chr4:4103105"}\NormalTok{,}\StringTok{"chr4:4109198"}\NormalTok{,}\StringTok{"chr4:4109210"}\NormalTok{,}
+                   \StringTok{"chr4:4240627"}\NormalTok{,}\StringTok{"chr4:4242705"}\NormalTok{,}\StringTok{"chr4:4243668"}\NormalTok{,}\StringTok{"chr4:4245210"}\NormalTok{,}
+                   \StringTok{"chr4:4245510"}\NormalTok{,}\StringTok{"chr4:4245513"}\NormalTok{,}\StringTok{"chr4:4245591"}\NormalTok{,}\StringTok{"chr4:4245926"}\NormalTok{,}
+                   \StringTok{"chr4:4245929"}\NormalTok{,}\StringTok{"chr4:4246109"}\NormalTok{,}\StringTok{"chr4:4246433"}\NormalTok{,}\StringTok{"chr4:4246453"}\NormalTok{,}
+                   \StringTok{"chr4:4246457"}\NormalTok{,}\StringTok{"chr4:4246497"}\NormalTok{,}\StringTok{"chr4:4249414"}\NormalTok{,}\StringTok{"chr4:4249415"}\NormalTok{,}
+                   \StringTok{"chr4:4249484"}\NormalTok{,}\StringTok{"chr4:4271623"}\NormalTok{,}\StringTok{"chr4:4275306"}\NormalTok{,}\StringTok{"chr4:4304749"}\NormalTok{,}
+                   \StringTok{"chr4:4318931"}\NormalTok{,}\StringTok{"chr4:4318970"}\NormalTok{,}\StringTok{"chr4:4319564"}\NormalTok{,}\StringTok{"chr4:4319728"}\NormalTok{,}
+                   \StringTok{"chr4:4319750"}\NormalTok{,}\StringTok{"chr4:4322078"}\NormalTok{,}\StringTok{"chr4:4709657"}\NormalTok{,}\StringTok{"chr4:4732282"}\NormalTok{,}
+                   \StringTok{"chr4:4789635"}\NormalTok{,}\StringTok{"chr4:4822960"}\NormalTok{,}\StringTok{"chr4:4824890"}\NormalTok{,}\StringTok{"chr4:4825092"}\NormalTok{,}
+                   \StringTok{"chr4:4825180"}\NormalTok{,}\StringTok{"chr4:4865316"}\NormalTok{,}\StringTok{"chr4:4865321"}\NormalTok{,}\StringTok{"chr4:5018702"}\NormalTok{,}
+                   \StringTok{"chr4:5812778"}\NormalTok{,}\StringTok{"chr4:5814082"}\NormalTok{,}\StringTok{"chr4:5833660"}\NormalTok{,}\StringTok{"chr4:5833899"}\NormalTok{,}
+                   \StringTok{"chr4:5835541"}\NormalTok{,}\StringTok{"chr4:5851205"}\NormalTok{,}\StringTok{"chr4:5862752"}\NormalTok{,}\StringTok{"chr4:5862938"}\NormalTok{,}
+                   \StringTok{"chr4:5862943"}\NormalTok{,}\StringTok{"chr4:5901873"}\NormalTok{,}\StringTok{"chr4:5905499"}\NormalTok{,}\StringTok{"chr4:5906287"}\NormalTok{,}
+                   \StringTok{"chr4:6018891"}\NormalTok{,}\StringTok{"chr4:6019046"}\NormalTok{,}\StringTok{"chr4:6020190"}\NormalTok{,}\StringTok{"chr4:6020367"}\NormalTok{,}
+                   \StringTok{"chr4:6025638"}\NormalTok{,}\StringTok{"chr4:6025656"}\NormalTok{,}\StringTok{"chr4:6025766"}\NormalTok{,}\StringTok{"chr4:6026058"}\NormalTok{,}
+                   \StringTok{"chr4:6083488"}\NormalTok{,}\StringTok{"chr4:6204935"}\NormalTok{,}\StringTok{"chr4:6235553"}\NormalTok{,}\StringTok{"chr4:6237142"}\NormalTok{,}
+                   \StringTok{"chr4:6238466"}\NormalTok{,}\StringTok{"chr4:6239906"}\NormalTok{,}\StringTok{"chr4:6240929"}\NormalTok{,}\StringTok{"chr4:6245022"}\NormalTok{,}
+                   \StringTok{"chr4:6245618"}\NormalTok{,}\StringTok{"chr4:6245732"}\NormalTok{,}\StringTok{"chr4:6245915"}\NormalTok{,}\StringTok{"chr4:6246075"}\NormalTok{,}
+                   \StringTok{"chr4:6246373"}\NormalTok{,}\StringTok{"chr4:6246959"}\NormalTok{,}\StringTok{"chr4:6290594"}\NormalTok{,}\StringTok{"chr4:6292020"}\NormalTok{,}
+                   \StringTok{"chr4:6294095"}\NormalTok{,}\StringTok{"chr4:6298375"}\NormalTok{,}\StringTok{"chr4:6316092"}\NormalTok{,}\StringTok{"chr4:6321396"}\NormalTok{,}
+                   \StringTok{"chr4:6324647"}\NormalTok{,}\StringTok{"chr4:6324785"}\NormalTok{,}\StringTok{"chr4:6327669"}\NormalTok{,}\StringTok{"chr4:6328354"}\NormalTok{,}
+                   \StringTok{"chr4:6328507"}\NormalTok{,}\StringTok{"chr4:6333130"}\NormalTok{,}\StringTok{"chr4:6333559"}\NormalTok{,}\StringTok{"chr4:6333669"}\NormalTok{,}
+                   \StringTok{"chr4:6335966"}\NormalTok{,}\StringTok{"chr4:6435341"}\NormalTok{,}\StringTok{"chr4:6435486"}\NormalTok{,}\StringTok{"chr4:6435926"}\NormalTok{,}
+                   \StringTok{"chr4:6437191"}\NormalTok{,}\StringTok{"chr4:6437197"}\NormalTok{,}\StringTok{"chr4:6457121"}\NormalTok{,}\StringTok{"chr4:6457131"}\NormalTok{,}
+                   \StringTok{"chr4:6457132"}\NormalTok{,}\StringTok{"chr4:6568390"}\NormalTok{,}\StringTok{"chr4:6570032"}\NormalTok{,}\StringTok{"chr4:6570768"}\NormalTok{,}
+                   \StringTok{"chr4:6596360"}\NormalTok{,}\StringTok{"chr4:6613252"}\NormalTok{,}\StringTok{"chr4:6613462"}\NormalTok{,}\StringTok{"chr4:6620991"}\NormalTok{,}
+                   \StringTok{"chr4:6624771"}\NormalTok{,}\StringTok{"chr4:6626154"}\NormalTok{,}\StringTok{"chr4:6641969"}\NormalTok{,}\StringTok{"chr4:6642090"}\NormalTok{,}
+                   \StringTok{"chr4:6644466"}\NormalTok{,}\StringTok{"chr4:6644467"}\NormalTok{,}\StringTok{"chr4:6644468"}\NormalTok{,}\StringTok{"chr4:6647889"}\NormalTok{,}
+                   \StringTok{"chr4:6648300"}\NormalTok{,}\StringTok{"chr4:6662665"}\NormalTok{,}\StringTok{"chr4:6663319"}\NormalTok{,}\StringTok{"chr4:6663715"}\NormalTok{,}
+                   \StringTok{"chr4:6674554"}\NormalTok{,}\StringTok{"chr4:6678553"}\NormalTok{,}\StringTok{"chr4:6678599"}\NormalTok{,}\StringTok{"chr4:6690535"}\NormalTok{,}
+                   \StringTok{"chr4:6698664"}\NormalTok{,}\StringTok{"chr4:6698667"}\NormalTok{,}\StringTok{"chr4:6698706"}\NormalTok{,}\StringTok{"chr4:6720572"}\NormalTok{,}
+                   \StringTok{"chr4:6911679"}\NormalTok{,}\StringTok{"chr4:6985889"}\NormalTok{,}\StringTok{"chr4:6987394"}\NormalTok{,}\StringTok{"chr4:7002344"}\NormalTok{,}
+                   \StringTok{"chr4:7004495"}\NormalTok{,}\StringTok{"chr4:7004506"}\NormalTok{,}\StringTok{"chr4:7005196"}\NormalTok{,}\StringTok{"chr4:7005199"}\NormalTok{,}
+                   \StringTok{"chr4:7024077"}\NormalTok{,}\StringTok{"chr4:7024398"}\NormalTok{,}\StringTok{"chr4:7029430"}\NormalTok{,}\StringTok{"chr4:7031064"}\NormalTok{,}
+                   \StringTok{"chr4:7044357"}\NormalTok{,}\StringTok{"chr4:7044380"}\NormalTok{,}\StringTok{"chr4:7048842"}\NormalTok{,}\StringTok{"chr4:7052115"}\NormalTok{,}
+                   \StringTok{"chr4:7055253"}\NormalTok{,}\StringTok{"chr4:7064243"}\NormalTok{,}\StringTok{"chr4:7067765"}\NormalTok{,}\StringTok{"chr4:7073187"}\NormalTok{,}
+                   \StringTok{"chr4:7074027"}\NormalTok{,}\StringTok{"chr4:7677967"}\NormalTok{,}\StringTok{"chr4:7701947"}\NormalTok{,}\StringTok{"chr4:7702795"}\NormalTok{,}
+                   \StringTok{"chr4:7703505"}\NormalTok{,}\StringTok{"chr4:7703807"}\NormalTok{,}\StringTok{"chr4:7704795"}\NormalTok{,}\StringTok{"chr4:7704818"}\NormalTok{,}
+                   \StringTok{"chr4:7709703"}\NormalTok{,}\StringTok{"chr4:7712150"}\NormalTok{,}\StringTok{"chr4:7714490"}\NormalTok{,}\StringTok{"chr4:7733843"}\NormalTok{,}
+                   \StringTok{"chr4:7735162"}\NormalTok{,}\StringTok{"chr4:7735164"}\NormalTok{,}\StringTok{"chr4:7736103"}\NormalTok{,}\StringTok{"chr4:7736112"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Biological Association Visualization: Manhattan Plot}\label{biological-association-visualization-manhattan-plot}
+
+\begin{itemize}
+\tightlist
+\item
+  Finally, we plot the Manhattanh plot graph
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{manhattan}\NormalTok{(GWAS\_TABLE\_Ommit, }
+          \AttributeTok{highlight =}\NormalTok{ SNP\_HIGHLIGHT, }
+          \AttributeTok{annotateTop =}\NormalTok{ T, }
+          \AttributeTok{annotatePval =} \FloatTok{0.20}\NormalTok{, }
+          \AttributeTok{genomewideline =} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(}\FloatTok{0.0001}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/3. manhattan plot-1.pdf}}
+
+\section{References}\label{references}
+
+\section{Session Info}\label{session-info}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.4.1 (2024-06-14)
+## Platform: aarch64-apple-darwin20
+## Running under: macOS 15.7.4
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## time zone: America/Chicago
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] qqman_0.1.9   ggplot2_3.5.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] vctrs_0.6.5       cli_3.6.3         knitr_1.48        rlang_1.1.4      
+##  [5] xfun_0.48         highr_0.11        generics_0.1.3    calibrate_1.7.7  
+##  [9] labeling_0.4.3    glue_1.8.0        colorspace_2.1-1  htmltools_0.5.8.1
+## [13] tinytex_0.53      scales_1.3.0      fansi_1.0.6       rmarkdown_2.28   
+## [17] grid_4.4.1        evaluate_1.0.0    munsell_0.5.1     tibble_3.2.1     
+## [21] MASS_7.3-61       fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
+## [25] bookdown_0.40     compiler_4.4.1    dplyr_1.1.4       pkgconfig_2.0.3  
+## [29] rstudioapi_0.16.0 farver_2.1.2      digest_0.6.37     R6_2.5.1         
+## [33] tidyselect_1.2.1  utf8_1.2.4        pillar_1.9.0      magrittr_2.0.3   
+## [37] withr_3.0.1       tools_4.4.1       gtable_0.3.5
+\end{verbatim}
+
+\chapter{Processamento de dados públicos de neuroblastoma}\label{processamento-de-dados-puxfablicos-de-neuroblastoma}
+
+\section{Origem dos dados}\label{origem-dos-dados}
+
+Os dados analisados neste módulo têm origem na base de dados genômicos R2.
+
+A plataforma R2 é uma ferramenta de análise e visualização genômica online de livre acesso que pode analisar uma grande coleção de dados públicos, mas também permite a análise protegida de conjuntos de dados privados, conforme indicado por Rijswijk (2024).
+
+A R2 consiste em um banco de dados que armazena as informações genômicas, acoplado a um amplo conjunto de ferramentas para analisar/visualizar os conjuntos de dados.
+
+Mais informações sobre a plataforma R2 pode ser encontradas no site da plataforma:
+
+\url{https://hgserver1.amc.nl/cgi-bin/r2/main.cgi}
+
+\hfill\break
+
+\section{Carregando dados pre-processados de R2}\label{carregando-dados-pre-processados-de-r2}
+
+\hfill\break
+
+Nesta parte, vamos carregar uma dataframe contendo dados baixados de R2 em que já fizemos pre-processamento. Vamos gerar algumas visualizações para nos familiarizarmos com os dados. O objeto r2\_gse62564\_GSVA\_Metadata.rds deve ser baixado da pasta no Google Drive no seguinte link: \url{https://drive.google.com/drive/folders/1Kkos4HK2EP4ntrQOJE0mrHYlpeMa1yi4?usp=sharing}
+
+Uma vez que o arquivo é baixado, pode-se carregá-lo no ambiente R usando a função readRDS, como feito abaixo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"./data/r2\_gse62564\_GSVA\_Metadata.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+No neuroblastoma, o principal sistema de classificação de risco classifica os pacientes usando características como idade, estadiamento, histologia e status de amplificação do MYCN.
+
+O prognóstico é a associação entre as características do tumor e a sobrevida do paciente.
+
+O MYCN é um gene que codifica um fator de transcrição muito importante no prognóstico do tumor.
+
+Vamos analisar a expressão do MYCN comparada pelo grupo de risco do neuroblastoma.
+
+Primeiro, vamos ver que tipo de variável é o status do MYCN e a expressão do MYCN.
+
+Verificar a classe da variável mycn\_status:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{mycn\_status)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+Verificar a classe da variável MYCN:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{MYCN)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+Ambos são do tipo ``character''. Para plotar, precisamos fazer com que a expressão MYCN seja do tipo numérico:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{MYCN }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}
+\NormalTok{  r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{MYCN)}
+\end{Highlighting}
+\end{Shaded}
+
+Verificar novamente a classe da variável MYCN:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{MYCN)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+Agora a classe de MYCN é um vetor numérico.
+
+\section{Primeiros gráficos com dados de neuroblastoma}\label{primeiros-gruxe1ficos-com-dados-de-neuroblastoma}
+
+\subsection{Mycn\_status vs Expressão de MYCN}\label{mycn_status-vs-expressuxe3o-de-mycn}
+
+Vamos plotar uma figura com a variável mycn\_status no eixo X e expressão de MYCN no eixo Y.
+
+Vamos tentar ver se o ggplot, que usamos antes, considera a variável mycn\_status categórica como ela é agora.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(r2\_gse62564\_GSVA\_Metadata, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{mycn\_status, }\AttributeTok{y=}\NormalTok{MYCN, }
+                                      \AttributeTok{fill=}\NormalTok{mycn\_status)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-46-1.pdf}}
+
+Vemos que existem três categorias de mycn\_status: mycn\_amp, mycn\_nonamp e nas. mycn\_amp significa amplificação de MYCN, um fator de mau prognóstico. mycn\_nonamp significa ausência de amplificação de MYCN. NA significa que não há informações sobre o status de MYCN. Vemos que a amplificação de MYCN está altamente associada à expressão de MYCN, no eixo Y. Por enquanto, não vamos nos preocupar nem com a formatação dos rótulos X e Y nem com os valores N/A do status de amplificação MYCN.
+
+\subsection{Alto Risco vs expressão de MYCN}\label{alto-risco-vs-expressuxe3o-de-mycn}
+
+Podemos plotar o status de alto risco vs.~amplificação MYCN e deixar o argumento de preenchimento como mycn\_status
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(r2\_gse62564\_GSVA\_Metadata, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{high\_risk, }\AttributeTok{y=}\NormalTok{MYCN, }
+                                      \AttributeTok{fill=}\NormalTok{mycn\_status)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-47-1.pdf}}
+
+Aqui vemos que a maior parte dos pacientes de alto risco (High Risk) apresentam também amplificação de MYCN e que nesses pacientes, a expressão de MYCN é alta.
+
+Podemos ainda querer ver apenas a expressão de MYCN no grupo de alto risco, usando o parâmetro fill=high\_risk:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(r2\_gse62564\_GSVA\_Metadata, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{high\_risk, }\AttributeTok{y=}\NormalTok{MYCN, }
+                                      \AttributeTok{fill=}\NormalTok{high\_risk)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-48-1.pdf}}
+
+Onde confirmamos que a expressão de MYCN é maior nos pacientes de alto risco (High Risk).
+
+\chapter{Análise de Sobrevivência}\label{anuxe1lise-de-sobrevivuxeancia}
+
+Na análise de sobrevivência estudamos como varia a probabilidade de sobrevivência dos pacientes em função do tempo transcorrido desde o início de um estudo. Na atividade proposta para este módulo, vamos avaliar como é a probabilidade de sobrevivência de pacientes de neuroblastoma em função do status de alto risco (se um paciente é de alto risco ou baixo risco). Para dar prosseguimento, carregamos a dataframe de neuroblastoma no ambiente R, como fizemos no módulo anterior:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{( }\StringTok{"./data/r2\_gse62564\_GSVA\_Metadata.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Processamento de variáveis para permitir a construção de gráficos}\label{processamento-de-variuxe1veis-para-permitir-a-construuxe7uxe3o-de-gruxe1ficos}
+
+Precisamos definir o status do OS (Overall Survival = sobrevivência geral) como numérico, em vez de um caractere. Fazemos o mesmo para o status EFS (Event Free Survival = sobrevivência livre de evento).
+
+Usamos o método ifelse para construir os\_bin\_numeric a partir de os\_bin, introduzindo números ao invés da palavra evento e não evento. No caso do Overall Survival (OS), a morte do paciente é o evento.
+
+Para usar o comando a seguir, precisamos de usar, antes, uma biblioteca do R chamada maditr:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(maditr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Use magrittr pipe '%>%' to chain several operations:
+##              mtcars %>%
+##                  let(mpg_hp = mpg/hp) %>%
+##                  take(mean(mpg_hp), by = am)
+## 
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'maditr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     sort_by
+\end{verbatim}
+
+Agora podemos usar o operador pipe (\%\textgreater\%), que toma o resultado de um comando e passa para o próximo comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{os\_bin\_numeric =}
+                  \FunctionTok{ifelse}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{os\_bin }\SpecialCharTok{==} \StringTok{"event"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"0"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Agora, fazemos os\_bin\_numeric numérico:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata[}\StringTok{"os\_bin\_numeric"}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{os\_bin\_numeric)}
+\end{Highlighting}
+\end{Shaded}
+
+Fazemos o mesmo para EFS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# EFS}
+\NormalTok{r2\_gse62564\_GSVA\_Metadata }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{efs\_bin\_numeric =}
+                  \FunctionTok{ifelse}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{efs\_bin }\SpecialCharTok{==} \StringTok{"event"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"0"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Agora, fazemos efs\_bin\_numeric, numérico:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata[}\StringTok{"efs\_bin\_numeric"}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{efs\_bin\_numeric)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Fazendo a análise de sobrevivência}\label{fazendo-a-anuxe1lise-de-sobrevivuxeancia}
+
+\subsection{Construção da curva de sobrevivência}\label{construuxe7uxe3o-da-curva-de-sobrevivuxeancia}
+
+Usamos a função survfit do pacote em R, survival, para construir o objeto fit\_os\_high\_risk, ajustando o modelo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survival)}
+\NormalTok{fit\_os\_high\_risk }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(os\_day), os\_bin\_numeric) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{high\_risk,}
+                   \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata)}
+\end{Highlighting}
+\end{Shaded}
+
+Observe que os\_day é uma variável contendo o número de dias até o evento de interesse.
+
+\subsection{Plotagem da curva de sobrevivência}\label{plotagem-da-curva-de-sobrevivuxeancia}
+
+Usamos a função ggsurvplot do pacote em R survminer para plotar a curva de sobrevivência:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survminer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggpubr
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'survminer'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:survival':
+## 
+##     myeloma
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsurvplot}\NormalTok{(fit\_os\_high\_risk, }
+           \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata, }
+           \AttributeTok{risk.table =} \ConstantTok{TRUE}\NormalTok{,}
+           \CommentTok{\# risk.table = "abs\_pct",}
+           \AttributeTok{pval =} \ConstantTok{TRUE}\NormalTok{, }
+           \AttributeTok{pval.coord =} \FunctionTok{c}\NormalTok{(}\DecValTok{2000}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{           )}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-56-1.pdf}}
+
+\subsection{Hipóxia no microambiente tumoral}\label{hipuxf3xia-no-microambiente-tumoral}
+
+Vamos agora procurar estabelecer uma relação entre hipóxia e neuroblastoma de alto risco. Chama-se hipóxia à condição de baixa concentração de oxigênio que se estabelece no microambiente do tumor à medida que o câncer progride.
+
+HIF1A é um fator de transcrição sensível aos níveis de oxigênio. Precisamos tornar a coluna HIF1A (variável), numérica, como fizemos com MYCN acima:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{HIF1A }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{HIF1A)}
+\end{Highlighting}
+\end{Shaded}
+
+Compare as médias de HIF1A entre os grupos de alto risco usando ggplot2:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(r2\_gse62564\_GSVA\_Metadata, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{high\_risk, }\AttributeTok{y=}\NormalTok{HIF1A, }\AttributeTok{fill=}\NormalTok{high\_risk)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_boxplot}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{method =} \StringTok{"t.test"}\NormalTok{, }\AttributeTok{label.x =} \FloatTok{1.4}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_linedraw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-58-1.pdf}}
+
+Vemos que para este conjunto de dados, a expressão de HIF1A é maior no grupo de alto risco, o que está de acordo com a noção de que aumento da hipóxia leva a maior malignidade na progressão tumoral.
+
+\subsection{Análise de sobrevivência do gene da hipóxia}\label{anuxe1lise-de-sobrevivuxeancia-do-gene-da-hipuxf3xia}
+
+Como vemos que indivíduos de alto risco apresentam maior expressão de HIF1A, vamos analisar também a análise de sobrevivência de HIF1A. Para isso vamos separar em dois grupos de pacientes, baseados na expressão do HIF1A. Construindo a variável HIF1A em dois quantis, um com alta expressão de HIF1A e um com baixa expressão de HIF1A. Para isso vamos usar a função ntile() do pacote tidyverse:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v lubridate 1.9.3     v tibble    3.2.1
+## v purrr     1.0.2     v tidyr     1.3.1
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::between()   masks maditr::between()
+## x dplyr::coalesce()  masks maditr::coalesce()
+## x readr::cols()      masks maditr::cols()
+## x dplyr::filter()    masks stats::filter()
+## x dplyr::first()     masks maditr::first()
+## x dplyr::lag()       masks stats::lag()
+## x dplyr::last()      masks maditr::last()
+## x purrr::transpose() masks maditr::transpose()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{quantile =} \FunctionTok{ntile}\NormalTok{(HIF1A, }\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Fazendo da variável quantil HIF1A um fator
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{quantile }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{quantile )}
+\end{Highlighting}
+\end{Shaded}
+
+Gráfico de dispersão HALLMARK HYPOXIA vs.~HIF1A
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{HALLMARK\_HYPOXIA }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{HALLMARK\_HYPOXIA)}
+
+\FunctionTok{qplot}\NormalTok{(HALLMARK\_HYPOXIA, HIF1A, }
+      \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata,}
+      \AttributeTok{colour=}\NormalTok{quantile,}
+      \AttributeTok{ylab =} \StringTok{"HIF1A"}\NormalTok{,}
+      \AttributeTok{xlab =} \StringTok{"Hallmark Hypoxia"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-61-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# Basic scatter plot}
+\FunctionTok{ggplot}\NormalTok{(r2\_gse62564\_GSVA\_Metadata, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{HALLMARK\_HYPOXIA, }\AttributeTok{y=}\NormalTok{HIF1A, }\AttributeTok{color=}\NormalTok{quantile)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-61-2.pdf}}
+
+Vemos que o quantil 2 tem valores de expressão de HIF1A maiores que os valores do quantil 1.
+
+Construímos o objeto de sobrevivência ajustado com a variável quantil HIF1A:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survival)}
+\NormalTok{fit\_os\_HIF1A }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(os\_day), os\_bin\_numeric) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{quantile,}
+                   \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata)}
+\end{Highlighting}
+\end{Shaded}
+
+E finalmente traçamos a curva de sobrevivência do gráfico do Overall Survival:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survminer)}
+\FunctionTok{ggsurvplot}\NormalTok{(fit\_os\_HIF1A, }
+           \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata, }
+           \AttributeTok{risk.table =} \ConstantTok{TRUE}\NormalTok{,}
+           \CommentTok{\# risk.table = "abs\_pct",}
+           \AttributeTok{pval =} \ConstantTok{TRUE}\NormalTok{, }
+           \AttributeTok{pval.coord =} \FunctionTok{c}\NormalTok{(}\DecValTok{4000}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{           )}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-63-1.pdf}}
+
+Observamos que os maiores valores na expressão de HIF1A (segundo quantil ou quantil 2. No inglês é second quantile) levam a menor probabilidade de sobrevivência. Vemos que no dataset, o segundo quantil tem menores probabilidades de sobrevivência.
+
+\subsubsection{Event-free survival}\label{event-free-survival}
+
+Construímos a variável quantil HIF1A:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{r2\_gse62564\_GSVA\_Metadata }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{quantile =} \FunctionTok{ntile}\NormalTok{(HIF1A, }\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Construímos objeto de sobrevivência EFS, \textbf{fit\_efs\_HIF1A}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survival)}
+\NormalTok{fit\_efs\_HIF1A }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(efs\_day), efs\_bin\_numeric) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata}\SpecialCharTok{$}\NormalTok{quantile,}
+                   \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata)}
+\end{Highlighting}
+\end{Shaded}
+
+Curva de sobrevivência do gráfico EFS, usando a função \textbf{ggsurvplot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survminer)}
+\FunctionTok{ggsurvplot}\NormalTok{(fit\_efs\_HIF1A, }
+           \AttributeTok{data =}\NormalTok{ r2\_gse62564\_GSVA\_Metadata, }
+           \AttributeTok{risk.table =} \ConstantTok{TRUE}\NormalTok{,}
+           \CommentTok{\# risk.table = "abs\_pct",}
+           \AttributeTok{pval =} \ConstantTok{TRUE}\NormalTok{, }
+           \AttributeTok{pval.coord =} \FunctionTok{c}\NormalTok{(}\DecValTok{4000}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{           )}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-66-1.pdf}}
+
+\subsection{Relação do HIF1A com a idade no diagnóstico}\label{relauxe7uxe3o-do-hif1a-com-a-idade-no-diagnuxf3stico}
+
+Precisamos criar o objeto r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival
+
+A função compare\_means não consegue lidar com espaços no nome da variável de exaustão de células T.
+
+Teremos que usar um truque para lidar com os espaços em ``T cell exhaustion''.
+
+Usaremos o pacote stringr para inserir pontos (.) substituindo os espaços no dataframe r2\_gse62564\_GSVA\_Metadata.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata\_Spaces }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata}
+\FunctionTok{library}\NormalTok{(stringr)}
+\FunctionTok{names}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces)}\OtherTok{\textless{}{-}}\FunctionTok{str\_replace\_all}\NormalTok{(}\FunctionTok{names}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces), }\FunctionTok{c}\NormalTok{(}\StringTok{" "} \OtherTok{=} \StringTok{"."}\NormalTok{ , }\StringTok{","} \OtherTok{=} \StringTok{""}\NormalTok{ ))}
+\end{Highlighting}
+\end{Shaded}
+
+Criando o objeto r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata\_Spaces}
+\end{Highlighting}
+\end{Shaded}
+
+Fazendo age\_at\_diagnosis numérico para plotar os quantis
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival}\SpecialCharTok{$}\NormalTok{age\_at\_diagnosis }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival}\SpecialCharTok{$}\NormalTok{age\_at\_diagnosis)}
+\end{Highlighting}
+\end{Shaded}
+
+Verificando a idade máxima no diagnóstico
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival}\SpecialCharTok{$}\NormalTok{age\_at\_diagnosis)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8983
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival}\SpecialCharTok{$}\NormalTok{age\_at\_diagnosis)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+Construir quantis para a idade no diagnóstico (age\_qtls)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival\_age }\OtherTok{\textless{}{-}}\NormalTok{ r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{age\_qtls =} \FunctionTok{ntile}\NormalTok{(age\_at\_diagnosis, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Faça age\_qtls como fator
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival\_age}\SpecialCharTok{$}\NormalTok{age\_qtls }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival\_age}\SpecialCharTok{$}\NormalTok{age\_qtls)}
+\end{Highlighting}
+\end{Shaded}
+
+Gráfico age\_qtls vs.~HIF1A
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(r2\_gse62564\_GSVA\_Metadata\_Spaces\_survival\_age, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{age\_qtls, }\AttributeTok{y=}\NormalTok{HIF1A, }\AttributeTok{fill=}\NormalTok{high\_risk)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_boxplot}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{stat\_compare\_means}\NormalTok{(}\AttributeTok{method =} \StringTok{"t.test"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{theme\_linedraw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-74-1.pdf}}
+
+\chapter{Final Words}\label{final-words}
+
+We have finished a nice book.
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

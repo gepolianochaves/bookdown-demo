@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Análise de Sobrevivência | Research in Computational Biology book</title>
+<meta name="author" content="Gepoliano Chaves">
+<meta name="description" content="Na análise de sobrevivência estudamos como varia a probabilidade de sobrevivência dos pacientes em função do tempo transcorrido desde o início de um estudo. Na atividade proposta para este módulo,...">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Análise de Sobrevivência | Research in Computational Biology book">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Na análise de sobrevivência estudamos como varia a probabilidade de sobrevivência dos pacientes em função do tempo transcorrido desde o início de um estudo. Na atividade proposta para este módulo,...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Análise de Sobrevivência | Research in Computational Biology book">
+<meta name="twitter:description" content="Na análise de sobrevivência estudamos como varia a probabilidade de sobrevivência dos pacientes em função do tempo transcorrido desde o início de um estudo. Na atividade proposta para este módulo,...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Research in Computational Biology book</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Prerequisites</a></li>
+<li><a class="" href="basics-of-r.html"><span class="header-section-number">2</span> Basics of R</a></li>
+<li><a class="" href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></li>
+<li><a class="active" href="an%C3%A1lise-de-sobreviv%C3%AAncia.html"><span class="header-section-number">4</span> Análise de Sobrevivência</a></li>
+<li><a class="" href="final-words.html"><span class="header-section-number">5</span> Final Words</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="análise-de-sobrevivência" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Análise de Sobrevivência<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-de-sobreviv%C3%AAncia"><i class="fas fa-link"></i></a>
+</h1>
+<p>Na análise de sobrevivência estudamos como varia a probabilidade de sobrevivência dos pacientes em função do tempo transcorrido desde o início de um estudo. Na atividade proposta para este módulo, vamos avaliar como é a probabilidade de sobrevivência de pacientes de neuroblastoma em função do status de alto risco (se um paciente é de alto risco ou baixo risco). Para dar prosseguimento, carregamos a dataframe de neuroblastoma no ambiente R, como fizemos no módulo anterior:</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span> <span class="st">"./data/r2_gse62564_GSVA_Metadata.rds"</span><span class="op">)</span></span></code></pre></div>
+<div id="processamento-de-variáveis-para-permitir-a-construção-de-gráficos" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Processamento de variáveis para permitir a construção de gráficos<a class="anchor" aria-label="anchor" href="#processamento-de-vari%C3%A1veis-para-permitir-a-constru%C3%A7%C3%A3o-de-gr%C3%A1ficos"><i class="fas fa-link"></i></a>
+</h2>
+<p>Precisamos definir o status do OS (Overall Survival = sobrevivência geral) como numérico, em vez de um caractere. Fazemos o mesmo para o status EFS (Event Free Survival = sobrevivência livre de evento).</p>
+<p>Usamos o método ifelse para construir os_bin_numeric a partir de os_bin, introduzindo números ao invés da palavra evento e não evento. No caso do Overall Survival (OS), a morte do paciente é o evento.</p>
+<p>Para usar o comando a seguir, precisamos de usar, antes, uma biblioteca do R chamada maditr:</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gdemin/maditr">maditr</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## To get total summary skip 'by' argument: take_all(mtcars, mean)</code></pre>
+<pre><code>## 
+## Attaching package: 'maditr'</code></pre>
+<pre><code>## The following object is masked from 'package:base':
+## 
+##     sort_by</code></pre>
+<p>Agora podemos usar o operador pipe (%&gt;%), que toma o resultado de um comando e passa para o próximo comando:</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>os_bin_numeric <span class="op">=</span></span>
+<span>                  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">os_bin</span> <span class="op">==</span> <span class="st">"event"</span>, <span class="st">"1"</span>, <span class="st">"0"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Agora, fazemos os_bin_numeric numérico:</p>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">[</span><span class="st">"os_bin_numeric"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">os_bin_numeric</span><span class="op">)</span></span></code></pre></div>
+<p>Fazemos o mesmo para EFS:</p>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## EFS</span></span>
+<span><span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>efs_bin_numeric <span class="op">=</span></span>
+<span>                  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">efs_bin</span> <span class="op">==</span> <span class="st">"event"</span>, <span class="st">"1"</span>, <span class="st">"0"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Agora, fazemos efs_bin_numeric, numérico:</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">[</span><span class="st">"efs_bin_numeric"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">efs_bin_numeric</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="fazendo-a-análise-de-sobrevivência" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Fazendo a análise de sobrevivência<a class="anchor" aria-label="anchor" href="#fazendo-a-an%C3%A1lise-de-sobreviv%C3%AAncia"><i class="fas fa-link"></i></a>
+</h2>
+<div id="construção-da-curva-de-sobrevivência" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Construção da curva de sobrevivência<a class="anchor" aria-label="anchor" href="#constru%C3%A7%C3%A3o-da-curva-de-sobreviv%C3%AAncia"><i class="fas fa-link"></i></a>
+</h3>
+<p>Usamos a função survfit do pacote em R, survival, para construir o objeto fit_os_high_risk, ajustando o modelo:</p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
+<span><span class="va">fit_os_high_risk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">os_day</span><span class="op">)</span>, <span class="va">os_bin_numeric</span><span class="op">)</span> <span class="op">~</span> <span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">high_risk</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">)</span></span></code></pre></div>
+<p>Observe que os_day é uma variável contendo o número de dias até o evento de interesse.</p>
+</div>
+<div id="plotagem-da-curva-de-sobrevivência" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Plotagem da curva de sobrevivência<a class="anchor" aria-label="anchor" href="#plotagem-da-curva-de-sobreviv%C3%AAncia"><i class="fas fa-link"></i></a>
+</h3>
+<p>Usamos a função ggsurvplot do pacote em R survminer para plotar a curva de sobrevivência:</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Loading required package: ggpubr</code></pre>
+<pre><code>## 
+## Attaching package: 'survminer'</code></pre>
+<pre><code>## The following object is masked from 'package:survival':
+## 
+##     myeloma</code></pre>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span><span class="va">fit_os_high_risk</span>, </span>
+<span>           data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span>, </span>
+<span>           risk.table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>           <span class="co"># risk.table = "abs_pct",</span></span>
+<span>           pval <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>           pval.coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>           <span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-56-1.png" width="672"></div>
+</div>
+<div id="hipóxia-no-microambiente-tumoral" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> Hipóxia no microambiente tumoral<a class="anchor" aria-label="anchor" href="#hip%C3%B3xia-no-microambiente-tumoral"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos agora procurar estabelecer uma relação entre hipóxia e neuroblastoma de alto risco. Chama-se hipóxia à condição de baixa concentração de oxigênio que se estabelece no microambiente do tumor à medida que o câncer progride.</p>
+<p>HIF1A é um fator de transcrição sensível aos níveis de oxigênio. Precisamos tornar a coluna HIF1A (variável), numérica, como fizemos com MYCN acima:</p>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">HIF1A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">HIF1A</span><span class="op">)</span></span></code></pre></div>
+<p>Compare as médias de HIF1A entre os grupos de alto risco usando ggplot2:</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">high_risk</span>, y<span class="op">=</span><span class="va">HIF1A</span>, fill<span class="op">=</span><span class="va">high_risk</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/stat_compare_means.html">stat_compare_means</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"t.test"</span>, label.x <span class="op">=</span> <span class="fl">1.4</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-58-1.png" width="672"></div>
+<p>Vemos que para este conjunto de dados, a expressão de HIF1A é maior no grupo de alto risco, o que está de acordo com a noção de que aumento da hipóxia leva a maior malignidade na progressão tumoral.</p>
+</div>
+<div id="análise-de-sobrevivência-do-gene-da-hipóxia" class="section level3" number="4.2.4">
+<h3>
+<span class="header-section-number">4.2.4</span> Análise de sobrevivência do gene da hipóxia<a class="anchor" aria-label="anchor" href="#an%C3%A1lise-de-sobreviv%C3%AAncia-do-gene-da-hip%C3%B3xia"><i class="fas fa-link"></i></a>
+</h3>
+<p>Como vemos que indivíduos de alto risco apresentam maior expressão de HIF1A, vamos analisar também a análise de sobrevivência de HIF1A. Para isso vamos separar em dois grupos de pacientes, baseados na expressão do HIF1A. Construindo a variável HIF1A em dois quantis, um com alta expressão de HIF1A e um com baixa expressão de HIF1A. Para isso vamos usar a função ntile() do pacote tidyverse:</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ lubridate 1.9.3     ✔ tibble    3.2.1
+## ✔ purrr     1.0.2     ✔ tidyr     1.3.1
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks maditr::between()
+## ✖ dplyr::coalesce()  masks maditr::coalesce()
+## ✖ readr::cols()      masks maditr::cols()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks maditr::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks maditr::last()
+## ✖ purrr::transpose() masks maditr::transpose()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>quantile <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ntile.html">ntile</a></span><span class="op">(</span><span class="va">HIF1A</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Fazendo da variável quantil HIF1A um fator</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">quantile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">quantile</span> <span class="op">)</span></span></code></pre></div>
+<p>Gráfico de dispersão HALLMARK HYPOXIA vs. HIF1A</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">HALLMARK_HYPOXIA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">HALLMARK_HYPOXIA</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">HALLMARK_HYPOXIA</span>, <span class="va">HIF1A</span>, </span>
+<span>      data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span>,</span>
+<span>      colour<span class="op">=</span><span class="va">quantile</span>,</span>
+<span>      ylab <span class="op">=</span> <span class="st">"HIF1A"</span>,</span>
+<span>      xlab <span class="op">=</span> <span class="st">"Hallmark Hypoxia"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-61-1.png" width="672"></div>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="co"># Basic scatter plot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">HALLMARK_HYPOXIA</span>, y<span class="op">=</span><span class="va">HIF1A</span>, color<span class="op">=</span><span class="va">quantile</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-61-2.png" width="672"></div>
+<p>Vemos que o quantil 2 tem valores de expressão de HIF1A maiores que os valores do quantil 1.</p>
+<p>Construímos o objeto de sobrevivência ajustado com a variável quantil HIF1A:</p>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
+<span><span class="va">fit_os_HIF1A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">os_day</span><span class="op">)</span>, <span class="va">os_bin_numeric</span><span class="op">)</span> <span class="op">~</span> <span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">quantile</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">)</span></span></code></pre></div>
+<p>E finalmente traçamos a curva de sobrevivência do gráfico do Overall Survival:</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span><span class="va">fit_os_HIF1A</span>, </span>
+<span>           data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span>, </span>
+<span>           risk.table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>           <span class="co"># risk.table = "abs_pct",</span></span>
+<span>           pval <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>           pval.coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4000</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>           <span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-63-1.png" width="672"></div>
+<p>Observamos que os maiores valores na expressão de HIF1A (segundo quantil ou quantil 2. No inglês é second quantile) levam a menor probabilidade de sobrevivência. Vemos que no dataset, o segundo quantil tem menores probabilidades de sobrevivência.</p>
+<div id="event-free-survival" class="section level4" number="4.2.4.1">
+<h4>
+<span class="header-section-number">4.2.4.1</span> Event-free survival<a class="anchor" aria-label="anchor" href="#event-free-survival"><i class="fas fa-link"></i></a>
+</h4>
+<p>Construímos a variável quantil HIF1A:</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>quantile <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ntile.html">ntile</a></span><span class="op">(</span><span class="va">HIF1A</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Construímos objeto de sobrevivência EFS, <strong>fit_efs_HIF1A</strong></p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span></span>
+<span><span class="va">fit_efs_HIF1A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">efs_day</span><span class="op">)</span>, <span class="va">efs_bin_numeric</span><span class="op">)</span> <span class="op">~</span> <span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">$</span><span class="va">quantile</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span><span class="op">)</span></span></code></pre></div>
+<p>Curva de sobrevivência do gráfico EFS, usando a função <strong>ggsurvplot</strong></p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span><span class="va">fit_efs_HIF1A</span>, </span>
+<span>           data <span class="op">=</span> <span class="va">r2_gse62564_GSVA_Metadata</span>, </span>
+<span>           risk.table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>           <span class="co"># risk.table = "abs_pct",</span></span>
+<span>           pval <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>           pval.coord <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4000</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>           <span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-66-1.png" width="672"></div>
+</div>
+</div>
+<div id="relação-do-hif1a-com-a-idade-no-diagnóstico" class="section level3" number="4.2.5">
+<h3>
+<span class="header-section-number">4.2.5</span> Relação do HIF1A com a idade no diagnóstico<a class="anchor" aria-label="anchor" href="#rela%C3%A7%C3%A3o-do-hif1a-com-a-idade-no-diagn%C3%B3stico"><i class="fas fa-link"></i></a>
+</h3>
+<p>Precisamos criar o objeto r2_gse62564_GSVA_Metadata_Spaces_survival</p>
+<p>A função compare_means não consegue lidar com espaços no nome da variável de exaustão de células T.</p>
+<p>Teremos que usar um truque para lidar com os espaços em “T cell exhaustion”.</p>
+<p>Usaremos o pacote stringr para inserir pontos (.) substituindo os espaços no dataframe r2_gse62564_GSVA_Metadata.</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata_Spaces</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="st">"."</span> , <span class="st">","</span> <span class="op">=</span> <span class="st">""</span> <span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Criando o objeto r2_gse62564_GSVA_Metadata_Spaces_survival:</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata_Spaces</span></span></code></pre></div>
+<p>Fazendo age_at_diagnosis numérico para plotar os quantis</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival</span><span class="op">$</span><span class="va">age_at_diagnosis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival</span><span class="op">$</span><span class="va">age_at_diagnosis</span><span class="op">)</span></span></code></pre></div>
+<p>Verificando a idade máxima no diagnóstico</p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival</span><span class="op">$</span><span class="va">age_at_diagnosis</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 8983</code></pre>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival</span><span class="op">$</span><span class="va">age_at_diagnosis</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>Construir quantis para a idade no diagnóstico (age_qtls)</p>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival_age</span> <span class="op">&lt;-</span> <span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_qtls <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ntile.html">ntile</a></span><span class="op">(</span><span class="va">age_at_diagnosis</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Faça age_qtls como fator</p>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival_age</span><span class="op">$</span><span class="va">age_qtls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival_age</span><span class="op">$</span><span class="va">age_qtls</span><span class="op">)</span></span></code></pre></div>
+<p>Gráfico age_qtls vs. HIF1A</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">r2_gse62564_GSVA_Metadata_Spaces_survival_age</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">age_qtls</span>, y<span class="op">=</span><span class="va">HIF1A</span>, fill<span class="op">=</span><span class="va">high_risk</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/stat_compare_means.html">stat_compare_means</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"t.test"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-74-1.png" width="672"></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></div>
+<div class="next"><a href="final-words.html"><span class="header-section-number">5</span> Final Words</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#an%C3%A1lise-de-sobreviv%C3%AAncia"><span class="header-section-number">4</span> Análise de Sobrevivência</a></li>
+<li><a class="nav-link" href="#processamento-de-vari%C3%A1veis-para-permitir-a-constru%C3%A7%C3%A3o-de-gr%C3%A1ficos"><span class="header-section-number">4.1</span> Processamento de variáveis para permitir a construção de gráficos</a></li>
+<li>
+<a class="nav-link" href="#fazendo-a-an%C3%A1lise-de-sobreviv%C3%AAncia"><span class="header-section-number">4.2</span> Fazendo a análise de sobrevivência</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#constru%C3%A7%C3%A3o-da-curva-de-sobreviv%C3%AAncia"><span class="header-section-number">4.2.1</span> Construção da curva de sobrevivência</a></li>
+<li><a class="nav-link" href="#plotagem-da-curva-de-sobreviv%C3%AAncia"><span class="header-section-number">4.2.2</span> Plotagem da curva de sobrevivência</a></li>
+<li><a class="nav-link" href="#hip%C3%B3xia-no-microambiente-tumoral"><span class="header-section-number">4.2.3</span> Hipóxia no microambiente tumoral</a></li>
+<li><a class="nav-link" href="#an%C3%A1lise-de-sobreviv%C3%AAncia-do-gene-da-hip%C3%B3xia"><span class="header-section-number">4.2.4</span> Análise de sobrevivência do gene da hipóxia</a></li>
+<li><a class="nav-link" href="#rela%C3%A7%C3%A3o-do-hif1a-com-a-idade-no-diagn%C3%B3stico"><span class="header-section-number">4.2.5</span> Relação do HIF1A com a idade no diagnóstico</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Research in Computational Biology book</strong>" was written by Gepoliano Chaves. It was last built on 2026-03-30.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
