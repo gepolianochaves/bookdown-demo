@@ -1,0 +1,332 @@
+
+# Accessing the Raça/Cor Variable in DATASUS
+
+## Load libraries
+
+\
+
+```{r load libraries, eval=F}
+library(microdatasus)
+library(dplyr)
+library(tidyverse)
+library(maditr)
+library(kableExtra)
+```
+
+\
+
+## Constrir dataframe (df) com identificação racial
+
+\
+
+```{r}
+racacor_df <- readRDS("./data/racacor_df.rds")
+```
+
+\
+
+## Transformar variável Raça/Cor
+
+Transforma coluna com caracteres em nomes de raça/cor
+
+```{r ifelse raca cor}
+racacor_df <- racacor_df %>%
+  dplyr::mutate(raca_cor_factor = ifelse(racacor_df$RACACOR == "1", "branca", 
+                                         ifelse(racacor_df$RACACOR == "2", "preta",
+                                                ifelse(racacor_df$RACACOR == "3", "amarela",
+                                                       ifelse(racacor_df$RACACOR == "4", "parda", 
+                                                              ifelse(racacor_df$RACACOR == "5", "indígena",
+                                                                     ifelse(racacor_df$RACACOR == "9", "ignorado","0")))))))
+```
+
+\
+
+## Gráfico de barras por categoria da Variável Raça/Cor
+
+\
+
+Nesta parte, poderemos estimar o número de indivíduos sob risco, considerando as categorias raciais brasileiras.
+
+```{r barplot}
+library(ggplot2)
+# Basic barplot
+ggplot(data=racacor_df, aes(x=raca_cor_factor, y=n)) +
+  geom_bar(stat="identity")
+```
+
+\
+
+```{r}
+dados_agregados_year <- readRDS("./data/dados_agregados_year.rds")
+dados_agregados_year
+```
+
+\
+
+Remover NAs dos dados agregados por ano
+
+```{r}
+dados_agregados_year <- dados_agregados_year[ which(
+  dados_agregados_year$year != "NA"), ]
+```
+
+## Mortalidade Anual Total
+
+\
+
+```{r}
+library(ggplot2)
+# Basic line plot with points
+ggplot(data=dados_agregados_year, aes(x=year, y=n, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+\
+
+### Mortalidade Anual Total Usando Variável Raça/Cor
+
+\
+
+Mortalidade anual total (figura acima) e mortalidade anual usando a variável Raça/Cor (figura abaixo) foram feitas usando @STHTDA202408 como referência.
+
+\
+
+Carregar dados_appended_melted
+
+```{r}
+dados_appended_melted <- readRDS("./data/dados_appended_melted.rds")
+dados_appended_melted
+```
+
+\
+
+Obter variável raça/cor como palavras descritivas ao invés de números.
+
+```{r ifelse raca cor para visualização 1, eval=T}
+dados_appended_melted <- dados_appended_melted %>%
+  dplyr::mutate(raca_cor_factor = ifelse(dados_appended_melted$variable == "1", "branca", 
+                                         ifelse(dados_appended_melted$variable == "2", "preta",
+                                                ifelse(dados_appended_melted$variable == "3", "amarela",
+                                                       ifelse(dados_appended_melted$variable == "4", "parda", 
+                                                              ifelse(dados_appended_melted$variable == "5", "indígena",
+                                                                     ifelse(dados_appended_melted$variable == "9", "ignorado","0")))))))
+# Checar dados_appended_melted
+dados_appended_melted
+```
+
+\
+
+Remove NA in year
+
+```{r}
+dados_appended_melted <- dados_appended_melted[ which(
+  dados_appended_melted$year != "NA"), ]
+```
+
+\
+
+Remove 0 in raça/cor
+
+```{r}
+dados_appended_melted <- dados_appended_melted[ which(
+  dados_appended_melted$raca_cor_factor != "0"), ]
+
+dados_appended_melted
+```
+
+\
+
+Visualizar plot
+
+```{r}
+ggplot(dados_appended_melted, aes(x=year, y=value, group=raca_cor_factor)) +
+  geom_line(aes(linetype=raca_cor_factor))+
+  geom_point()
+
+# wait to change the variable names:
+
+# names(dados_appended_melted)[names(dados_appended_melted) == 'variable'] <- 'RACACOR'
+# names(dados_appended_melted)[names(dados_appended_melted) == 'value'] <- 'n'
+```
+
+\
+
+
+## Mortalidade Anual Total por Neuroblastoma
+
+\
+
+```{r}
+dados_nb <- readRDS("./data/dados_nb.rds")
+
+# Checar dados_nb
+head(dados_nb)
+
+dados_agregados_nb_year <- dados_nb %>%
+  group_by(year) %>%
+  summarise(n = n())
+
+# Checar dados_agregados_nb_year
+dados_agregados_nb_year
+
+ggplot(data=dados_agregados_nb_year, aes(x=year, y=n, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+\
+
+```{r}
+dados_nb_race_year_selcd <- dados_nb %>%
+  select(RACACOR, year)
+
+# Checar dados_nb_race_year_selcd
+head(dados_nb_race_year_selcd)
+
+# dados_nb_race_2013_selcd <- dados_estados_nb_2013 %>%
+#   select(RACACOR, CAUSABAS)
+```
+
+\
+
+use cast() to convert data frame from long to wide format
+
+```{r}
+library(reshape2)
+wide_dados_nb_appended <- dcast(dados_nb_race_year_selcd, year ~ RACACOR)
+```
+
+\
+
+Melt the data frame
+
+```{r}
+dados_nb_appended_melted <- melt(wide_dados_nb_appended, id.vars = "year")
+```
+
+\
+
+Obter variável raça/cor como palavras descritivas ao invés de números.
+
+```{r ifelse raca cor para visualização 2, eval=T}
+dados_nb_appended_melted <- dados_nb_appended_melted %>%
+  dplyr::mutate(raca_cor_factor = ifelse(dados_nb_appended_melted$variable == "1", "branca", 
+                                         ifelse(dados_nb_appended_melted$variable == "2", "preta",
+                                                ifelse(dados_nb_appended_melted$variable == "3", "amarela",
+                                                       ifelse(dados_nb_appended_melted$variable == "4", "parda", 
+                                                              ifelse(dados_nb_appended_melted$variable == "5", "indígena",
+                                                                     ifelse(dados_nb_appended_melted$variable == "9", "ignorado","0")))))))
+```
+
+\
+
+Remove NA in year
+
+```{r}
+dados_nb_appended_melted <- dados_nb_appended_melted[ which(
+  dados_nb_appended_melted$year != "NA"), ]
+```
+
+\
+
+Remove 0 in raça/cor
+
+```{r}
+dados_nb_appended_melted <- dados_nb_appended_melted[ which(
+  dados_nb_appended_melted$raca_cor_factor != "0"), ]
+```
+
+\
+
+Visualizar plot
+
+```{r}
+ggplot(dados_nb_appended_melted, aes(x=year, y=value, group=raca_cor_factor, color=raca_cor_factor)) +
+  geom_line(aes(linetype=raca_cor_factor))+
+  geom_point()
+```
+
+
+\
+
+Visualizar Plot Disparity
+
+```{r}
+library('readxl')
+Disparity_coeficient_Brazil_All <- read_excel("./data/Disparity_coeficient_Brazil_All.xlsx")
+```
+
+
+```{r}
+ggplot(Disparity_coeficient_Brazil_All, aes(x=year, y=value, group=racacor, color=racacor)) +
+  geom_line(aes(linetype=racacor))+
+  geom_point()
+```
+
+\
+
+
+Visualizar Plot Disparity
+
+```{r}
+library('readxl')
+Disparity_coeficient_Sum_PardosBlacks_Brazil_All <- read_excel("./data/Disparity_coeficient_Sum_PardosBlacks_Brazil_All.xlsx")
+```
+
+
+```{r}
+ggplot(Disparity_coeficient_Sum_PardosBlacks_Brazil_All, aes(x=year, y=value, group=racacor, color=racacor)) +
+  geom_line(aes(linetype=racacor))+
+  geom_point()
+```
+
+\
+
+Visualizar Plot Disparity IBGE
+
+```{r}
+library('readxl')
+Disparity_ibge_plot <- read_excel("./data/Disparity_ibge_plot.xlsx")
+```
+
+
+```{r}
+ggplot(Disparity_ibge_plot, aes(x=year, y=value, group=racacor, color=racacor)) +
+  geom_line(aes(linetype=racacor))+
+  geom_point()
+```
+
+\
+
+Visualizar Plot Disparity IBGE
+
+```{r}
+library('readxl')
+Disparity_ibge_negros_plot <- read_excel("./data/Disparity_ibge_negros_plot.xlsx")
+```
+
+
+```{r}
+ggplot(Disparity_ibge_negros_plot, aes(x=year, y=value, group=racacor, color=racacor)) +
+  geom_line(aes(linetype=racacor))+
+  geom_point()
+```
+
+\
+
+Stacked Graph
+
+```{r}
+ggplot(dados_nb_appended_melted, aes(fill=raca_cor_factor, y=value, x=year)) + 
+    geom_bar(position="stack", stat="identity")
+```
+
+\
+
+Stacked + Graph
+
+```{r}
+ggplot(dados_nb_appended_melted, aes(fill=raca_cor_factor, y=value, x=year)) + 
+    geom_bar(position="fill", stat="identity")
+```

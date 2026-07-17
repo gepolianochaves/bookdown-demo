@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 5 Accessing the Raça/Cor Variable in DATASUS | Research in Computational Biology book</title>
+<meta name="author" content="Gepoliano Chaves">
+<meta name="description" content="5.1 Load libraries  library(microdatasus) library(dplyr) library(tidyverse) library(maditr) library(kableExtra)   5.2 Constrir dataframe (df) com identificação racial  racacor_df &lt;-...">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Chapter 5 Accessing the Raça/Cor Variable in DATASUS | Research in Computational Biology book">
+<meta property="og:type" content="book">
+<meta property="og:description" content="5.1 Load libraries  library(microdatasus) library(dplyr) library(tidyverse) library(maditr) library(kableExtra)   5.2 Constrir dataframe (df) com identificação racial  racacor_df &lt;-...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 5 Accessing the Raça/Cor Variable in DATASUS | Research in Computational Biology book">
+<meta name="twitter:description" content="5.1 Load libraries  library(microdatasus) library(dplyr) library(tidyverse) library(maditr) library(kableExtra)   5.2 Constrir dataframe (df) com identificação racial  racacor_df &lt;-...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Research in Computational Biology book</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Prerequisites</a></li>
+<li><a class="" href="basics-of-r.html"><span class="header-section-number">2</span> Basics of R</a></li>
+<li><a class="" href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></li>
+<li><a class="" href="an%C3%A1lise-de-sobreviv%C3%AAncia.html"><span class="header-section-number">4</span> Análise de Sobrevivência</a></li>
+<li><a class="active" href="accessing-the-ra%C3%A7acor-variable-in-datasus.html"><span class="header-section-number">5</span> Accessing the Raça/Cor Variable in DATASUS</a></li>
+<li><a class="" href="final-words.html"><span class="header-section-number">6</span> Final Words</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="accessing-the-raçacor-variable-in-datasus" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5</span> Accessing the Raça/Cor Variable in DATASUS<a class="anchor" aria-label="anchor" href="#accessing-the-ra%C3%A7acor-variable-in-datasus"><i class="fas fa-link"></i></a>
+</h1>
+<div id="load-libraries" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Load libraries<a class="anchor" aria-label="anchor" href="#load-libraries"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rfsaldanha/microdatasus">microdatasus</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gdemin/maditr">maditr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="constrir-dataframe-df-com-identificação-racial" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Constrir dataframe (df) com identificação racial<a class="anchor" aria-label="anchor" href="#constrir-dataframe-df-com-identifica%C3%A7%C3%A3o-racial"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">racacor_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"./data/racacor_df.rds"</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="transformar-variável-raçacor" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Transformar variável Raça/Cor<a class="anchor" aria-label="anchor" href="#transformar-vari%C3%A1vel-ra%C3%A7acor"><i class="fas fa-link"></i></a>
+</h2>
+<p>Transforma coluna com caracteres em nomes de raça/cor</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">racacor_df</span> <span class="op">&lt;-</span> <span class="va">racacor_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>raca_cor_factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">racacor_df</span><span class="op">$</span><span class="va">RACACOR</span> <span class="op">==</span> <span class="st">"1"</span>, <span class="st">"branca"</span>, </span>
+<span>                                         <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">racacor_df</span><span class="op">$</span><span class="va">RACACOR</span> <span class="op">==</span> <span class="st">"2"</span>, <span class="st">"preta"</span>,</span>
+<span>                                                <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">racacor_df</span><span class="op">$</span><span class="va">RACACOR</span> <span class="op">==</span> <span class="st">"3"</span>, <span class="st">"amarela"</span>,</span>
+<span>                                                       <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">racacor_df</span><span class="op">$</span><span class="va">RACACOR</span> <span class="op">==</span> <span class="st">"4"</span>, <span class="st">"parda"</span>, </span>
+<span>                                                              <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">racacor_df</span><span class="op">$</span><span class="va">RACACOR</span> <span class="op">==</span> <span class="st">"5"</span>, <span class="st">"indígena"</span>,</span>
+<span>                                                                     <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">racacor_df</span><span class="op">$</span><span class="va">RACACOR</span> <span class="op">==</span> <span class="st">"9"</span>, <span class="st">"ignorado"</span>,<span class="st">"0"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="gráfico-de-barras-por-categoria-da-variável-raçacor" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Gráfico de barras por categoria da Variável Raça/Cor<a class="anchor" aria-label="anchor" href="#gr%C3%A1fico-de-barras-por-categoria-da-vari%C3%A1vel-ra%C3%A7acor"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<p>Nesta parte, poderemos estimar o número de indivíduos sob risco, considerando as categorias raciais brasileiras.</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="co"># Basic barplot</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">racacor_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">raca_cor_factor</span>, y<span class="op">=</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/barplot-1.png" width="672"></div>
+<p><br></p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_agregados_year</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"./data/dados_agregados_year.rds"</span><span class="op">)</span></span>
+<span><span class="va">dados_agregados_year</span></span></code></pre></div>
+<pre><code>## # A tibble: 10 × 2
+##    year        n
+##    &lt;chr&gt;   &lt;int&gt;
+##  1 2015  1264175
+##  2 2016  1309774
+##  3 2017  1312663
+##  4 2018  1316719
+##  5 2019  1349801
+##  6 2020  1207189
+##  7 2021  1401033
+##  8 2022  1544266
+##  9 2023  1465610
+## 10 2024  1532015</code></pre>
+<p><br></p>
+<p>Remover NAs dos dados agregados por ano</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_agregados_year</span> <span class="op">&lt;-</span> <span class="va">dados_agregados_year</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span></span>
+<span>  <span class="va">dados_agregados_year</span><span class="op">$</span><span class="va">year</span> <span class="op">!=</span> <span class="st">"NA"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+</div>
+<div id="mortalidade-anual-total" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Mortalidade Anual Total<a class="anchor" aria-label="anchor" href="#mortalidade-anual-total"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="co"># Basic line plot with points</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">dados_agregados_year</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">n</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-78-1.png" width="672"></div>
+<p><br></p>
+<div id="mortalidade-anual-total-usando-variável-raçacor" class="section level3" number="5.5.1">
+<h3>
+<span class="header-section-number">5.5.1</span> Mortalidade Anual Total Usando Variável Raça/Cor<a class="anchor" aria-label="anchor" href="#mortalidade-anual-total-usando-vari%C3%A1vel-ra%C3%A7acor"><i class="fas fa-link"></i></a>
+</h3>
+<p><br></p>
+<p>Mortalidade anual total (figura acima) e mortalidade anual usando a variável Raça/Cor (figura abaixo) foram feitas usando <span class="citation">(<a href="#ref-STHTDA202408"><strong>STHTDA202408?</strong></a>)</span> como referência.</p>
+<p><br></p>
+<p>Carregar dados_appended_melted</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_appended_melted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"./data/dados_appended_melted.rds"</span><span class="op">)</span></span>
+<span><span class="va">dados_appended_melted</span></span></code></pre></div>
+<pre><code>##    year variable  value
+## 1  2015        1 643928
+## 2  2016        1 665737
+## 3  2017        1 663147
+## 4  2018        1 668707
+## 5  2019        1 686474
+## 6  2020        1 523848
+## 7  2021        1 644210
+## 8  2022        1 787363
+## 9  2023        1 737590
+## 10 2024        1 773683
+## 11 2015        2  93830
+## 12 2016        2  97747
+## 13 2017        2  99745
+## 14 2018        2 102889
+## 15 2019        2 107306
+## 16 2020        2 107171
+## 17 2021        2 122852
+## 18 2022        2 131005
+## 19 2023        2 129047
+## 20 2024        2 135916
+## 21 2015        3   7051
+## 22 2016        3   7276
+## 23 2017        3   7375
+## 24 2018        3   7524
+## 25 2019        3   7359
+## 26 2020        3   4716
+## 27 2021        3   5313
+## 28 2022        3   9261
+## 29 2023        3   9053
+## 30 2024        3   9914
+## 31 2015        4 458807
+## 32 2016        4 483026
+## 33 2017        4 497839
+## 34 2018        4 496106
+## 35 2019        4 509936
+## 36 2020        4 531808
+## 37 2021        4 587323
+## 38 2022        4 582469
+## 39 2023        4 561438
+## 40 2024        4 586563
+## 41 2015        5   3640
+## 42 2016        5   3867
+## 43 2017        5   3911
+## 44 2018        5   4261
+## 45 2019        5   4273
+## 46 2020        5   5173
+## 47 2021        5   5361
+## 48 2022        5   5343
+## 49 2023        5   5398
+## 50 2024        5   5555
+## 51 2015        9      0
+## 52 2016        9      5
+## 53 2017        9      0
+## 54 2018        9      0
+## 55 2019        9      0
+## 56 2020        9      0
+## 57 2021        9      0
+## 58 2022        9      0
+## 59 2023        9      0
+## 60 2024        9      0
+## 61 2015       NA  56919
+## 62 2016       NA  52116
+## 63 2017       NA  40646
+## 64 2018       NA  37232
+## 65 2019       NA  34453
+## 66 2020       NA  34473
+## 67 2021       NA  35974
+## 68 2022       NA  28825
+## 69 2023       NA  23084
+## 70 2024       NA  20384</code></pre>
+<p><br></p>
+<p>Obter variável raça/cor como palavras descritivas ao invés de números.</p>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_appended_melted</span> <span class="op">&lt;-</span> <span class="va">dados_appended_melted</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>raca_cor_factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"1"</span>, <span class="st">"branca"</span>, </span>
+<span>                                         <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"2"</span>, <span class="st">"preta"</span>,</span>
+<span>                                                <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"3"</span>, <span class="st">"amarela"</span>,</span>
+<span>                                                       <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"4"</span>, <span class="st">"parda"</span>, </span>
+<span>                                                              <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"5"</span>, <span class="st">"indígena"</span>,</span>
+<span>                                                                     <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"9"</span>, <span class="st">"ignorado"</span>,<span class="st">"0"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Checar dados_appended_melted</span></span>
+<span><span class="va">dados_appended_melted</span></span></code></pre></div>
+<pre><code>##    year variable  value raca_cor_factor
+## 1  2015        1 643928          branca
+## 2  2016        1 665737          branca
+## 3  2017        1 663147          branca
+## 4  2018        1 668707          branca
+## 5  2019        1 686474          branca
+## 6  2020        1 523848          branca
+## 7  2021        1 644210          branca
+## 8  2022        1 787363          branca
+## 9  2023        1 737590          branca
+## 10 2024        1 773683          branca
+## 11 2015        2  93830           preta
+## 12 2016        2  97747           preta
+## 13 2017        2  99745           preta
+## 14 2018        2 102889           preta
+## 15 2019        2 107306           preta
+## 16 2020        2 107171           preta
+## 17 2021        2 122852           preta
+## 18 2022        2 131005           preta
+## 19 2023        2 129047           preta
+## 20 2024        2 135916           preta
+## 21 2015        3   7051         amarela
+## 22 2016        3   7276         amarela
+## 23 2017        3   7375         amarela
+## 24 2018        3   7524         amarela
+## 25 2019        3   7359         amarela
+## 26 2020        3   4716         amarela
+## 27 2021        3   5313         amarela
+## 28 2022        3   9261         amarela
+## 29 2023        3   9053         amarela
+## 30 2024        3   9914         amarela
+## 31 2015        4 458807           parda
+## 32 2016        4 483026           parda
+## 33 2017        4 497839           parda
+## 34 2018        4 496106           parda
+## 35 2019        4 509936           parda
+## 36 2020        4 531808           parda
+## 37 2021        4 587323           parda
+## 38 2022        4 582469           parda
+## 39 2023        4 561438           parda
+## 40 2024        4 586563           parda
+## 41 2015        5   3640        indígena
+## 42 2016        5   3867        indígena
+## 43 2017        5   3911        indígena
+## 44 2018        5   4261        indígena
+## 45 2019        5   4273        indígena
+## 46 2020        5   5173        indígena
+## 47 2021        5   5361        indígena
+## 48 2022        5   5343        indígena
+## 49 2023        5   5398        indígena
+## 50 2024        5   5555        indígena
+## 51 2015        9      0        ignorado
+## 52 2016        9      5        ignorado
+## 53 2017        9      0        ignorado
+## 54 2018        9      0        ignorado
+## 55 2019        9      0        ignorado
+## 56 2020        9      0        ignorado
+## 57 2021        9      0        ignorado
+## 58 2022        9      0        ignorado
+## 59 2023        9      0        ignorado
+## 60 2024        9      0        ignorado
+## 61 2015       NA  56919               0
+## 62 2016       NA  52116               0
+## 63 2017       NA  40646               0
+## 64 2018       NA  37232               0
+## 65 2019       NA  34453               0
+## 66 2020       NA  34473               0
+## 67 2021       NA  35974               0
+## 68 2022       NA  28825               0
+## 69 2023       NA  23084               0
+## 70 2024       NA  20384               0</code></pre>
+<p><br></p>
+<p>Remove NA in year</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_appended_melted</span> <span class="op">&lt;-</span> <span class="va">dados_appended_melted</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span></span>
+<span>  <span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">year</span> <span class="op">!=</span> <span class="st">"NA"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<p><br></p>
+<p>Remove 0 in raça/cor</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_appended_melted</span> <span class="op">&lt;-</span> <span class="va">dados_appended_melted</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span></span>
+<span>  <span class="va">dados_appended_melted</span><span class="op">$</span><span class="va">raca_cor_factor</span> <span class="op">!=</span> <span class="st">"0"</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="va">dados_appended_melted</span></span></code></pre></div>
+<pre><code>##    year variable  value raca_cor_factor
+## 1  2015        1 643928          branca
+## 2  2016        1 665737          branca
+## 3  2017        1 663147          branca
+## 4  2018        1 668707          branca
+## 5  2019        1 686474          branca
+## 6  2020        1 523848          branca
+## 7  2021        1 644210          branca
+## 8  2022        1 787363          branca
+## 9  2023        1 737590          branca
+## 10 2024        1 773683          branca
+## 11 2015        2  93830           preta
+## 12 2016        2  97747           preta
+## 13 2017        2  99745           preta
+## 14 2018        2 102889           preta
+## 15 2019        2 107306           preta
+## 16 2020        2 107171           preta
+## 17 2021        2 122852           preta
+## 18 2022        2 131005           preta
+## 19 2023        2 129047           preta
+## 20 2024        2 135916           preta
+## 21 2015        3   7051         amarela
+## 22 2016        3   7276         amarela
+## 23 2017        3   7375         amarela
+## 24 2018        3   7524         amarela
+## 25 2019        3   7359         amarela
+## 26 2020        3   4716         amarela
+## 27 2021        3   5313         amarela
+## 28 2022        3   9261         amarela
+## 29 2023        3   9053         amarela
+## 30 2024        3   9914         amarela
+## 31 2015        4 458807           parda
+## 32 2016        4 483026           parda
+## 33 2017        4 497839           parda
+## 34 2018        4 496106           parda
+## 35 2019        4 509936           parda
+## 36 2020        4 531808           parda
+## 37 2021        4 587323           parda
+## 38 2022        4 582469           parda
+## 39 2023        4 561438           parda
+## 40 2024        4 586563           parda
+## 41 2015        5   3640        indígena
+## 42 2016        5   3867        indígena
+## 43 2017        5   3911        indígena
+## 44 2018        5   4261        indígena
+## 45 2019        5   4273        indígena
+## 46 2020        5   5173        indígena
+## 47 2021        5   5361        indígena
+## 48 2022        5   5343        indígena
+## 49 2023        5   5398        indígena
+## 50 2024        5   5555        indígena
+## 51 2015        9      0        ignorado
+## 52 2016        9      5        ignorado
+## 53 2017        9      0        ignorado
+## 54 2018        9      0        ignorado
+## 55 2019        9      0        ignorado
+## 56 2020        9      0        ignorado
+## 57 2021        9      0        ignorado
+## 58 2022        9      0        ignorado
+## 59 2023        9      0        ignorado
+## 60 2024        9      0        ignorado</code></pre>
+<p><br></p>
+<p>Visualizar plot</p>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_appended_melted</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">raca_cor_factor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>linetype<span class="op">=</span><span class="va">raca_cor_factor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-82-1.png" width="672"></div>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># wait to change the variable names:</span></span>
+<span></span>
+<span><span class="co"># names(dados_appended_melted)[names(dados_appended_melted) == 'variable'] &lt;- 'RACACOR'</span></span>
+<span><span class="co"># names(dados_appended_melted)[names(dados_appended_melted) == 'value'] &lt;- 'n'</span></span></code></pre></div>
+<p><br></p>
+</div>
+</div>
+<div id="mortalidade-anual-total-por-neuroblastoma" class="section level2" number="5.6">
+<h2>
+<span class="header-section-number">5.6</span> Mortalidade Anual Total por Neuroblastoma<a class="anchor" aria-label="anchor" href="#mortalidade-anual-total-por-neuroblastoma"><i class="fas fa-link"></i></a>
+</h2>
+<p><br></p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_nb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"./data/dados_nb.rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Checar dados_nb</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_nb</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##               CONTADOR RACACOR  DTOBITO CAUSABAS   DTNASC IDADE        YMD year
+## 876...17551        876       4 20012016     C749 10122010   405 2016-01-20 2016
+## 5811...56566    562030       1 14052018     C749 22042018   222 2018-05-14 2018
+## 8831...77296    613331       1 11062019     C749 31011964   455 2019-06-11 2019
+## 14106...82571   987213       4 01042019     C749 12021950   469 2019-04-01 2019
+## 900...87692      78999       1 08032020     C749 02042014   405 2020-03-08 2020
+## 8259...95051    470277       1 15022020     C749 21052005   414 2020-02-15 2020</code></pre>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_agregados_nb_year</span> <span class="op">&lt;-</span> <span class="va">dados_nb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Checar dados_agregados_nb_year</span></span>
+<span><span class="va">dados_agregados_nb_year</span></span></code></pre></div>
+<pre><code>## # A tibble: 10 × 2
+##    year      n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 2015    310
+##  2 2016    261
+##  3 2017    306
+##  4 2018    322
+##  5 2019    313
+##  6 2020    201
+##  7 2021    243
+##  8 2022    346
+##  9 2023    329
+## 10 2024    352</code></pre>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">dados_agregados_nb_year</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">n</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-83-1.png" width="672"></div>
+<p><br></p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_nb_race_year_selcd</span> <span class="op">&lt;-</span> <span class="va">dados_nb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">RACACOR</span>, <span class="va">year</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Checar dados_nb_race_year_selcd</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dados_nb_race_year_selcd</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##               RACACOR year
+## 876...17551         4 2016
+## 5811...56566        1 2018
+## 8831...77296        1 2019
+## 14106...82571       4 2019
+## 900...87692         1 2020
+## 8259...95051        1 2020</code></pre>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># dados_nb_race_2013_selcd &lt;- dados_estados_nb_2013 %&gt;%</span></span>
+<span><span class="co">#   select(RACACOR, CAUSABAS)</span></span></code></pre></div>
+<p><br></p>
+<p>use cast() to convert data frame from long to wide format</p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape">reshape2</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: 'reshape2'</code></pre>
+<pre><code>## The following object is masked from 'package:tidyr':
+## 
+##     smiths</code></pre>
+<pre><code>## The following objects are masked from 'package:maditr':
+## 
+##     dcast, melt</code></pre>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wide_dados_nb_appended</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/cast.html">dcast</a></span><span class="op">(</span><span class="va">dados_nb_race_year_selcd</span>, <span class="va">year</span> <span class="op">~</span> <span class="va">RACACOR</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Using year as value column: use value.var to override.</code></pre>
+<pre><code>## Aggregation function missing: defaulting to length</code></pre>
+<p><br></p>
+<p>Melt the data frame</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_nb_appended_melted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html">melt</a></span><span class="op">(</span><span class="va">wide_dados_nb_appended</span>, id.vars <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+<p>Obter variável raça/cor como palavras descritivas ao invés de números.</p>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_nb_appended_melted</span> <span class="op">&lt;-</span> <span class="va">dados_nb_appended_melted</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>raca_cor_factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"1"</span>, <span class="st">"branca"</span>, </span>
+<span>                                         <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"2"</span>, <span class="st">"preta"</span>,</span>
+<span>                                                <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"3"</span>, <span class="st">"amarela"</span>,</span>
+<span>                                                       <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"4"</span>, <span class="st">"parda"</span>, </span>
+<span>                                                              <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"5"</span>, <span class="st">"indígena"</span>,</span>
+<span>                                                                     <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"9"</span>, <span class="st">"ignorado"</span>,<span class="st">"0"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><br></p>
+<p>Remove NA in year</p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_nb_appended_melted</span> <span class="op">&lt;-</span> <span class="va">dados_nb_appended_melted</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span></span>
+<span>  <span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">year</span> <span class="op">!=</span> <span class="st">"NA"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<p><br></p>
+<p>Remove 0 in raça/cor</p>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dados_nb_appended_melted</span> <span class="op">&lt;-</span> <span class="va">dados_nb_appended_melted</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span></span>
+<span>  <span class="va">dados_nb_appended_melted</span><span class="op">$</span><span class="va">raca_cor_factor</span> <span class="op">!=</span> <span class="st">"0"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<p><br></p>
+<p>Visualizar plot</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">raca_cor_factor</span>, color<span class="op">=</span><span class="va">raca_cor_factor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>linetype<span class="op">=</span><span class="va">raca_cor_factor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-89-1.png" width="672"></div>
+<p><br></p>
+<p>Visualizar Plot Disparity</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://readxl.tidyverse.org">'readxl'</a></span><span class="op">)</span></span>
+<span><span class="va">Disparity_coeficient_Brazil_All</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"./data/Disparity_coeficient_Brazil_All.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">Disparity_coeficient_Brazil_All</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">racacor</span>, color<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>linetype<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-91-1.png" width="672"></div>
+<p><br></p>
+<p>Visualizar Plot Disparity</p>
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://readxl.tidyverse.org">'readxl'</a></span><span class="op">)</span></span>
+<span><span class="va">Disparity_coeficient_Sum_PardosBlacks_Brazil_All</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"./data/Disparity_coeficient_Sum_PardosBlacks_Brazil_All.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">Disparity_coeficient_Sum_PardosBlacks_Brazil_All</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">racacor</span>, color<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>linetype<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="672"></div>
+<p><br></p>
+<p>Visualizar Plot Disparity IBGE</p>
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://readxl.tidyverse.org">'readxl'</a></span><span class="op">)</span></span>
+<span><span class="va">Disparity_ibge_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"./data/Disparity_ibge_plot.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">Disparity_ibge_plot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">racacor</span>, color<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>linetype<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_line()`).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="672"></div>
+<p><br></p>
+<p>Visualizar Plot Disparity IBGE</p>
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://readxl.tidyverse.org">'readxl'</a></span><span class="op">)</span></span>
+<span><span class="va">Disparity_ibge_negros_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"./data/Disparity_ibge_negros_plot.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">Disparity_ibge_negros_plot</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">racacor</span>, color<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>linetype<span class="op">=</span><span class="va">racacor</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-97-1.png" width="672"></div>
+<p><br></p>
+<p>Stacked Graph</p>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">raca_cor_factor</span>, y<span class="op">=</span><span class="va">value</span>, x<span class="op">=</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"stack"</span>, stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-98-1.png" width="672"></div>
+<p><br></p>
+<p>Stacked + Graph</p>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dados_nb_appended_melted</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">raca_cor_factor</span>, y<span class="op">=</span><span class="va">value</span>, x<span class="op">=</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"fill"</span>, stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="bookdown-demo_files/figure-html/unnamed-chunk-99-1.png" width="672"></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="an%C3%A1lise-de-sobreviv%C3%AAncia.html"><span class="header-section-number">4</span> Análise de Sobrevivência</a></div>
+<div class="next"><a href="final-words.html"><span class="header-section-number">6</span> Final Words</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#accessing-the-ra%C3%A7acor-variable-in-datasus"><span class="header-section-number">5</span> Accessing the Raça/Cor Variable in DATASUS</a></li>
+<li><a class="nav-link" href="#load-libraries"><span class="header-section-number">5.1</span> Load libraries</a></li>
+<li><a class="nav-link" href="#constrir-dataframe-df-com-identifica%C3%A7%C3%A3o-racial"><span class="header-section-number">5.2</span> Constrir dataframe (df) com identificação racial</a></li>
+<li><a class="nav-link" href="#transformar-vari%C3%A1vel-ra%C3%A7acor"><span class="header-section-number">5.3</span> Transformar variável Raça/Cor</a></li>
+<li><a class="nav-link" href="#gr%C3%A1fico-de-barras-por-categoria-da-vari%C3%A1vel-ra%C3%A7acor"><span class="header-section-number">5.4</span> Gráfico de barras por categoria da Variável Raça/Cor</a></li>
+<li>
+<a class="nav-link" href="#mortalidade-anual-total"><span class="header-section-number">5.5</span> Mortalidade Anual Total</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#mortalidade-anual-total-usando-vari%C3%A1vel-ra%C3%A7acor"><span class="header-section-number">5.5.1</span> Mortalidade Anual Total Usando Variável Raça/Cor</a></li></ul>
+</li>
+<li><a class="nav-link" href="#mortalidade-anual-total-por-neuroblastoma"><span class="header-section-number">5.6</span> Mortalidade Anual Total por Neuroblastoma</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Research in Computational Biology book</strong>" was written by Gepoliano Chaves. It was last built on 2026-07-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

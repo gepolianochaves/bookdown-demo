@@ -52,4 +52,12 @@ hipóxia-no-microambiente-tumoral
 análise-de-sobrevivência-do-gene-da-hipóxia
 event-free-survival
 relação-do-hif1a-com-a-idade-no-diagnóstico
+accessing-the-raçacor-variable-in-datasus
+load-libraries
+constrir-dataframe-df-com-identificação-racial
+transformar-variável-raçacor
+gráfico-de-barras-por-categoria-da-variável-raçacor
+mortalidade-anual-total
+mortalidade-anual-total-usando-variável-raçacor
+mortalidade-anual-total-por-neuroblastoma
 final-words

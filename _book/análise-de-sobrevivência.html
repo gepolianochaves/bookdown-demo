@@ -68,7 +68,8 @@
 <li><a class="" href="basics-of-r.html"><span class="header-section-number">2</span> Basics of R</a></li>
 <li><a class="" href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></li>
 <li><a class="active" href="an%C3%A1lise-de-sobreviv%C3%AAncia.html"><span class="header-section-number">4</span> Análise de Sobrevivência</a></li>
-<li><a class="" href="final-words.html"><span class="header-section-number">5</span> Final Words</a></li>
+<li><a class="" href="accessing-the-ra%C3%A7acor-variable-in-datasus.html"><span class="header-section-number">5</span> Accessing the Raça/Cor Variable in DATASUS</a></li>
+<li><a class="" href="final-words.html"><span class="header-section-number">6</span> Final Words</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -94,7 +95,7 @@
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gdemin/maditr">maditr</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
-## To get total summary skip 'by' argument: take_all(mtcars, mean)</code></pre>
+## To aggregate data: take(mtcars, mean_mpg = mean(mpg), by = am)</code></pre>
 <pre><code>## 
 ## Attaching package: 'maditr'</code></pre>
 <pre><code>## The following object is masked from 'package:base':
@@ -310,7 +311,7 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="processamento-de-dados-p%C3%BAblicos-de-neuroblastoma.html"><span class="header-section-number">3</span> Processamento de dados públicos de neuroblastoma</a></div>
-<div class="next"><a href="final-words.html"><span class="header-section-number">5</span> Final Words</a></div>
+<div class="next"><a href="accessing-the-ra%C3%A7acor-variable-in-datasus.html"><span class="header-section-number">5</span> Accessing the Raça/Cor Variable in DATASUS</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -341,7 +342,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Research in Computational Biology book</strong>" was written by Gepoliano Chaves. It was last built on 2026-03-30.</p>
+    <p>"<strong>Research in Computational Biology book</strong>" was written by Gepoliano Chaves. It was last built on 2026-07-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

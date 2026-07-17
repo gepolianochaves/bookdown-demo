@@ -126,7 +126,7 @@
 
 \title{Research in Computational Biology book}
 \author{Gepoliano Chaves}
-\date{2026-03-30}
+\date{2026-07-16}
 
 \begin{document}
 \maketitle
@@ -1538,11 +1538,7 @@ Para usar o comando a seguir, precisamos de usar, antes, uma biblioteca do R cha
 
 \begin{verbatim}
 ## 
-## Use magrittr pipe '%>%' to chain several operations:
-##              mtcars %>%
-##                  let(mpg_hp = mpg/hp) %>%
-##                  take(mean(mpg_hp), by = am)
-## 
+## To select rows from data: rows(mtcars, am==0)
 \end{verbatim}
 
 \begin{verbatim}
@@ -1906,6 +1902,733 @@ Gráfico age\_qtls vs.~HIF1A
 \end{Shaded}
 
 \pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-74-1.pdf}}
+
+\chapter{Accessing the Raça/Cor Variable in DATASUS}\label{accessing-the-rauxe7acor-variable-in-datasus}
+
+\section{Load libraries}\label{load-libraries}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(microdatasus)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(maditr)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+\section{Constrir dataframe (df) com identificação racial}\label{constrir-dataframe-df-com-identificauxe7uxe3o-racial}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{racacor\_df }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"./data/racacor\_df.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+\section{Transformar variável Raça/Cor}\label{transformar-variuxe1vel-rauxe7acor}
+
+Transforma coluna com caracteres em nomes de raça/cor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{racacor\_df }\OtherTok{\textless{}{-}}\NormalTok{ racacor\_df }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{raca\_cor\_factor =} \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"1"}\NormalTok{, }\StringTok{"branca"}\NormalTok{, }
+                                         \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"2"}\NormalTok{, }\StringTok{"preta"}\NormalTok{,}
+                                                \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"3"}\NormalTok{, }\StringTok{"amarela"}\NormalTok{,}
+                                                       \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{, }\StringTok{"parda"}\NormalTok{, }
+                                                              \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"5"}\NormalTok{, }\StringTok{"indígena"}\NormalTok{,}
+                                                                     \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{, }\StringTok{"ignorado"}\NormalTok{,}\StringTok{"0"}\NormalTok{)))))))}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+\section{Gráfico de barras por categoria da Variável Raça/Cor}\label{gruxe1fico-de-barras-por-categoria-da-variuxe1vel-rauxe7acor}
+
+\hfill\break
+
+Nesta parte, poderemos estimar o número de indivíduos sob risco, considerando as categorias raciais brasileiras.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# Basic barplot}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{racacor\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{raca\_cor\_factor, }\AttributeTok{y=}\NormalTok{n)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/barplot-1.pdf}}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_agregados\_year }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"./data/dados\_agregados\_year.rds"}\NormalTok{)}
+\NormalTok{dados\_agregados\_year}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 2
+##    year        n
+##    <chr>   <int>
+##  1 2015  1264175
+##  2 2016  1309774
+##  3 2017  1312663
+##  4 2018  1316719
+##  5 2019  1349801
+##  6 2020  1207189
+##  7 2021  1401033
+##  8 2022  1544266
+##  9 2023  1465610
+## 10 2024  1532015
+\end{verbatim}
+
+\hfill\break
+
+Remover NAs dos dados agregados por ano
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_agregados\_year }\OtherTok{\textless{}{-}}\NormalTok{ dados\_agregados\_year[ }\FunctionTok{which}\NormalTok{(}
+\NormalTok{  dados\_agregados\_year}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{!=} \StringTok{"NA"}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Mortalidade Anual Total}\label{mortalidade-anual-total}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# Basic line plot with points}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{dados\_agregados\_year, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{n, }\AttributeTok{group=}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-78-1.pdf}}
+
+\hfill\break
+
+\subsection{Mortalidade Anual Total Usando Variável Raça/Cor}\label{mortalidade-anual-total-usando-variuxe1vel-rauxe7acor}
+
+\hfill\break
+
+Mortalidade anual total (figura acima) e mortalidade anual usando a variável Raça/Cor (figura abaixo) foram feitas usando \citet{STHTDA202408} como referência.
+
+\hfill\break
+
+Carregar dados\_appended\_melted
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_appended\_melted }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"./data/dados\_appended\_melted.rds"}\NormalTok{)}
+\NormalTok{dados\_appended\_melted}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    year variable  value
+## 1  2015        1 643928
+## 2  2016        1 665737
+## 3  2017        1 663147
+## 4  2018        1 668707
+## 5  2019        1 686474
+## 6  2020        1 523848
+## 7  2021        1 644210
+## 8  2022        1 787363
+## 9  2023        1 737590
+## 10 2024        1 773683
+## 11 2015        2  93830
+## 12 2016        2  97747
+## 13 2017        2  99745
+## 14 2018        2 102889
+## 15 2019        2 107306
+## 16 2020        2 107171
+## 17 2021        2 122852
+## 18 2022        2 131005
+## 19 2023        2 129047
+## 20 2024        2 135916
+## 21 2015        3   7051
+## 22 2016        3   7276
+## 23 2017        3   7375
+## 24 2018        3   7524
+## 25 2019        3   7359
+## 26 2020        3   4716
+## 27 2021        3   5313
+## 28 2022        3   9261
+## 29 2023        3   9053
+## 30 2024        3   9914
+## 31 2015        4 458807
+## 32 2016        4 483026
+## 33 2017        4 497839
+## 34 2018        4 496106
+## 35 2019        4 509936
+## 36 2020        4 531808
+## 37 2021        4 587323
+## 38 2022        4 582469
+## 39 2023        4 561438
+## 40 2024        4 586563
+## 41 2015        5   3640
+## 42 2016        5   3867
+## 43 2017        5   3911
+## 44 2018        5   4261
+## 45 2019        5   4273
+## 46 2020        5   5173
+## 47 2021        5   5361
+## 48 2022        5   5343
+## 49 2023        5   5398
+## 50 2024        5   5555
+## 51 2015        9      0
+## 52 2016        9      5
+## 53 2017        9      0
+## 54 2018        9      0
+## 55 2019        9      0
+## 56 2020        9      0
+## 57 2021        9      0
+## 58 2022        9      0
+## 59 2023        9      0
+## 60 2024        9      0
+## 61 2015       NA  56919
+## 62 2016       NA  52116
+## 63 2017       NA  40646
+## 64 2018       NA  37232
+## 65 2019       NA  34453
+## 66 2020       NA  34473
+## 67 2021       NA  35974
+## 68 2022       NA  28825
+## 69 2023       NA  23084
+## 70 2024       NA  20384
+\end{verbatim}
+
+\hfill\break
+
+Obter variável raça/cor como palavras descritivas ao invés de números.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_appended\_melted }\OtherTok{\textless{}{-}}\NormalTok{ dados\_appended\_melted }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{raca\_cor\_factor =} \FunctionTok{ifelse}\NormalTok{(dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"1"}\NormalTok{, }\StringTok{"branca"}\NormalTok{, }
+                                         \FunctionTok{ifelse}\NormalTok{(dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"2"}\NormalTok{, }\StringTok{"preta"}\NormalTok{,}
+                                                \FunctionTok{ifelse}\NormalTok{(dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"3"}\NormalTok{, }\StringTok{"amarela"}\NormalTok{,}
+                                                       \FunctionTok{ifelse}\NormalTok{(dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{, }\StringTok{"parda"}\NormalTok{, }
+                                                              \FunctionTok{ifelse}\NormalTok{(dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"5"}\NormalTok{, }\StringTok{"indígena"}\NormalTok{,}
+                                                                     \FunctionTok{ifelse}\NormalTok{(dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{, }\StringTok{"ignorado"}\NormalTok{,}\StringTok{"0"}\NormalTok{)))))))}
+\CommentTok{\# Checar dados\_appended\_melted}
+\NormalTok{dados\_appended\_melted}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    year variable  value raca_cor_factor
+## 1  2015        1 643928          branca
+## 2  2016        1 665737          branca
+## 3  2017        1 663147          branca
+## 4  2018        1 668707          branca
+## 5  2019        1 686474          branca
+## 6  2020        1 523848          branca
+## 7  2021        1 644210          branca
+## 8  2022        1 787363          branca
+## 9  2023        1 737590          branca
+## 10 2024        1 773683          branca
+## 11 2015        2  93830           preta
+## 12 2016        2  97747           preta
+## 13 2017        2  99745           preta
+## 14 2018        2 102889           preta
+## 15 2019        2 107306           preta
+## 16 2020        2 107171           preta
+## 17 2021        2 122852           preta
+## 18 2022        2 131005           preta
+## 19 2023        2 129047           preta
+## 20 2024        2 135916           preta
+## 21 2015        3   7051         amarela
+## 22 2016        3   7276         amarela
+## 23 2017        3   7375         amarela
+## 24 2018        3   7524         amarela
+## 25 2019        3   7359         amarela
+## 26 2020        3   4716         amarela
+## 27 2021        3   5313         amarela
+## 28 2022        3   9261         amarela
+## 29 2023        3   9053         amarela
+## 30 2024        3   9914         amarela
+## 31 2015        4 458807           parda
+## 32 2016        4 483026           parda
+## 33 2017        4 497839           parda
+## 34 2018        4 496106           parda
+## 35 2019        4 509936           parda
+## 36 2020        4 531808           parda
+## 37 2021        4 587323           parda
+## 38 2022        4 582469           parda
+## 39 2023        4 561438           parda
+## 40 2024        4 586563           parda
+## 41 2015        5   3640        indígena
+## 42 2016        5   3867        indígena
+## 43 2017        5   3911        indígena
+## 44 2018        5   4261        indígena
+## 45 2019        5   4273        indígena
+## 46 2020        5   5173        indígena
+## 47 2021        5   5361        indígena
+## 48 2022        5   5343        indígena
+## 49 2023        5   5398        indígena
+## 50 2024        5   5555        indígena
+## 51 2015        9      0        ignorado
+## 52 2016        9      5        ignorado
+## 53 2017        9      0        ignorado
+## 54 2018        9      0        ignorado
+## 55 2019        9      0        ignorado
+## 56 2020        9      0        ignorado
+## 57 2021        9      0        ignorado
+## 58 2022        9      0        ignorado
+## 59 2023        9      0        ignorado
+## 60 2024        9      0        ignorado
+## 61 2015       NA  56919               0
+## 62 2016       NA  52116               0
+## 63 2017       NA  40646               0
+## 64 2018       NA  37232               0
+## 65 2019       NA  34453               0
+## 66 2020       NA  34473               0
+## 67 2021       NA  35974               0
+## 68 2022       NA  28825               0
+## 69 2023       NA  23084               0
+## 70 2024       NA  20384               0
+\end{verbatim}
+
+\hfill\break
+
+Remove NA in year
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_appended\_melted }\OtherTok{\textless{}{-}}\NormalTok{ dados\_appended\_melted[ }\FunctionTok{which}\NormalTok{(}
+\NormalTok{  dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{!=} \StringTok{"NA"}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+Remove 0 in raça/cor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_appended\_melted }\OtherTok{\textless{}{-}}\NormalTok{ dados\_appended\_melted[ }\FunctionTok{which}\NormalTok{(}
+\NormalTok{  dados\_appended\_melted}\SpecialCharTok{$}\NormalTok{raca\_cor\_factor }\SpecialCharTok{!=} \StringTok{"0"}\NormalTok{), ]}
+
+\NormalTok{dados\_appended\_melted}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    year variable  value raca_cor_factor
+## 1  2015        1 643928          branca
+## 2  2016        1 665737          branca
+## 3  2017        1 663147          branca
+## 4  2018        1 668707          branca
+## 5  2019        1 686474          branca
+## 6  2020        1 523848          branca
+## 7  2021        1 644210          branca
+## 8  2022        1 787363          branca
+## 9  2023        1 737590          branca
+## 10 2024        1 773683          branca
+## 11 2015        2  93830           preta
+## 12 2016        2  97747           preta
+## 13 2017        2  99745           preta
+## 14 2018        2 102889           preta
+## 15 2019        2 107306           preta
+## 16 2020        2 107171           preta
+## 17 2021        2 122852           preta
+## 18 2022        2 131005           preta
+## 19 2023        2 129047           preta
+## 20 2024        2 135916           preta
+## 21 2015        3   7051         amarela
+## 22 2016        3   7276         amarela
+## 23 2017        3   7375         amarela
+## 24 2018        3   7524         amarela
+## 25 2019        3   7359         amarela
+## 26 2020        3   4716         amarela
+## 27 2021        3   5313         amarela
+## 28 2022        3   9261         amarela
+## 29 2023        3   9053         amarela
+## 30 2024        3   9914         amarela
+## 31 2015        4 458807           parda
+## 32 2016        4 483026           parda
+## 33 2017        4 497839           parda
+## 34 2018        4 496106           parda
+## 35 2019        4 509936           parda
+## 36 2020        4 531808           parda
+## 37 2021        4 587323           parda
+## 38 2022        4 582469           parda
+## 39 2023        4 561438           parda
+## 40 2024        4 586563           parda
+## 41 2015        5   3640        indígena
+## 42 2016        5   3867        indígena
+## 43 2017        5   3911        indígena
+## 44 2018        5   4261        indígena
+## 45 2019        5   4273        indígena
+## 46 2020        5   5173        indígena
+## 47 2021        5   5361        indígena
+## 48 2022        5   5343        indígena
+## 49 2023        5   5398        indígena
+## 50 2024        5   5555        indígena
+## 51 2015        9      0        ignorado
+## 52 2016        9      5        ignorado
+## 53 2017        9      0        ignorado
+## 54 2018        9      0        ignorado
+## 55 2019        9      0        ignorado
+## 56 2020        9      0        ignorado
+## 57 2021        9      0        ignorado
+## 58 2022        9      0        ignorado
+## 59 2023        9      0        ignorado
+## 60 2024        9      0        ignorado
+\end{verbatim}
+
+\hfill\break
+
+Visualizar plot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_appended\_melted, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{group=}\NormalTok{raca\_cor\_factor)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{raca\_cor\_factor))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-82-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wait to change the variable names:}
+
+\CommentTok{\# names(dados\_appended\_melted)[names(dados\_appended\_melted) == \textquotesingle{}variable\textquotesingle{}] \textless{}{-} \textquotesingle{}RACACOR\textquotesingle{}}
+\CommentTok{\# names(dados\_appended\_melted)[names(dados\_appended\_melted) == \textquotesingle{}value\textquotesingle{}] \textless{}{-} \textquotesingle{}n\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+\section{Mortalidade Anual Total por Neuroblastoma}\label{mortalidade-anual-total-por-neuroblastoma}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_nb }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"./data/dados\_nb.rds"}\NormalTok{)}
+
+\CommentTok{\# Checar dados\_nb}
+\FunctionTok{head}\NormalTok{(dados\_nb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               CONTADOR RACACOR  DTOBITO CAUSABAS   DTNASC IDADE        YMD year
+## 876...17551        876       4 20012016     C749 10122010   405 2016-01-20 2016
+## 5811...56566    562030       1 14052018     C749 22042018   222 2018-05-14 2018
+## 8831...77296    613331       1 11062019     C749 31011964   455 2019-06-11 2019
+## 14106...82571   987213       4 01042019     C749 12021950   469 2019-04-01 2019
+## 900...87692      78999       1 08032020     C749 02042014   405 2020-03-08 2020
+## 8259...95051    470277       1 15022020     C749 21052005   414 2020-02-15 2020
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_agregados\_nb\_year }\OtherTok{\textless{}{-}}\NormalTok{ dados\_nb }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+
+\CommentTok{\# Checar dados\_agregados\_nb\_year}
+\NormalTok{dados\_agregados\_nb\_year}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 2
+##    year      n
+##    <chr> <int>
+##  1 2015    310
+##  2 2016    261
+##  3 2017    306
+##  4 2018    322
+##  5 2019    313
+##  6 2020    201
+##  7 2021    243
+##  8 2022    346
+##  9 2023    329
+## 10 2024    352
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{dados\_agregados\_nb\_year, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{n, }\AttributeTok{group=}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-83-1.pdf}}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_nb\_race\_year\_selcd }\OtherTok{\textless{}{-}}\NormalTok{ dados\_nb }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(RACACOR, year)}
+
+\CommentTok{\# Checar dados\_nb\_race\_year\_selcd}
+\FunctionTok{head}\NormalTok{(dados\_nb\_race\_year\_selcd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               RACACOR year
+## 876...17551         4 2016
+## 5811...56566        1 2018
+## 8831...77296        1 2019
+## 14106...82571       4 2019
+## 900...87692         1 2020
+## 8259...95051        1 2020
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dados\_nb\_race\_2013\_selcd \textless{}{-} dados\_estados\_nb\_2013 \%\textgreater{}\%}
+\CommentTok{\#   select(RACACOR, CAUSABAS)}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+use cast() to convert data frame from long to wide format
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(reshape2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'reshape2'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tidyr':
+## 
+##     smiths
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:maditr':
+## 
+##     dcast, melt
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wide\_dados\_nb\_appended }\OtherTok{\textless{}{-}} \FunctionTok{dcast}\NormalTok{(dados\_nb\_race\_year\_selcd, year }\SpecialCharTok{\textasciitilde{}}\NormalTok{ RACACOR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Using year as value column: use value.var to override.
+\end{verbatim}
+
+\begin{verbatim}
+## Aggregation function missing: defaulting to length
+\end{verbatim}
+
+\hfill\break
+
+Melt the data frame
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_nb\_appended\_melted }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(wide\_dados\_nb\_appended, }\AttributeTok{id.vars =} \StringTok{"year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+Obter variável raça/cor como palavras descritivas ao invés de números.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_nb\_appended\_melted }\OtherTok{\textless{}{-}}\NormalTok{ dados\_nb\_appended\_melted }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{mutate}\NormalTok{(}\AttributeTok{raca\_cor\_factor =} \FunctionTok{ifelse}\NormalTok{(dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"1"}\NormalTok{, }\StringTok{"branca"}\NormalTok{, }
+                                         \FunctionTok{ifelse}\NormalTok{(dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"2"}\NormalTok{, }\StringTok{"preta"}\NormalTok{,}
+                                                \FunctionTok{ifelse}\NormalTok{(dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"3"}\NormalTok{, }\StringTok{"amarela"}\NormalTok{,}
+                                                       \FunctionTok{ifelse}\NormalTok{(dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{, }\StringTok{"parda"}\NormalTok{, }
+                                                              \FunctionTok{ifelse}\NormalTok{(dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"5"}\NormalTok{, }\StringTok{"indígena"}\NormalTok{,}
+                                                                     \FunctionTok{ifelse}\NormalTok{(dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{variable }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{, }\StringTok{"ignorado"}\NormalTok{,}\StringTok{"0"}\NormalTok{)))))))}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+Remove NA in year
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_nb\_appended\_melted }\OtherTok{\textless{}{-}}\NormalTok{ dados\_nb\_appended\_melted[ }\FunctionTok{which}\NormalTok{(}
+\NormalTok{  dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{!=} \StringTok{"NA"}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+Remove 0 in raça/cor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados\_nb\_appended\_melted }\OtherTok{\textless{}{-}}\NormalTok{ dados\_nb\_appended\_melted[ }\FunctionTok{which}\NormalTok{(}
+\NormalTok{  dados\_nb\_appended\_melted}\SpecialCharTok{$}\NormalTok{raca\_cor\_factor }\SpecialCharTok{!=} \StringTok{"0"}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hfill\break
+
+Visualizar plot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_nb\_appended\_melted, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{group=}\NormalTok{raca\_cor\_factor, }\AttributeTok{color=}\NormalTok{raca\_cor\_factor)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{raca\_cor\_factor))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-89-1.pdf}}
+
+\hfill\break
+
+Visualizar Plot Disparity
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{)}
+\NormalTok{Disparity\_coeficient\_Brazil\_All }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"./data/Disparity\_coeficient\_Brazil\_All.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Disparity\_coeficient\_Brazil\_All, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{group=}\NormalTok{racacor, }\AttributeTok{color=}\NormalTok{racacor)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{racacor))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf}}
+
+\hfill\break
+
+Visualizar Plot Disparity
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{)}
+\NormalTok{Disparity\_coeficient\_Sum\_PardosBlacks\_Brazil\_All }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"./data/Disparity\_coeficient\_Sum\_PardosBlacks\_Brazil\_All.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Disparity\_coeficient\_Sum\_PardosBlacks\_Brazil\_All, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{group=}\NormalTok{racacor, }\AttributeTok{color=}\NormalTok{racacor)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{racacor))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-93-1.pdf}}
+
+\hfill\break
+
+Visualizar Plot Disparity IBGE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{)}
+\NormalTok{Disparity\_ibge\_plot }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"./data/Disparity\_ibge\_plot.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Disparity\_ibge\_plot, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{group=}\NormalTok{racacor, }\AttributeTok{color=}\NormalTok{racacor)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{racacor))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_line()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_point()`).
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-95-1.pdf}}
+
+\hfill\break
+
+Visualizar Plot Disparity IBGE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{\textquotesingle{}readxl\textquotesingle{}}\NormalTok{)}
+\NormalTok{Disparity\_ibge\_negros\_plot }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"./data/Disparity\_ibge\_negros\_plot.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Disparity\_ibge\_negros\_plot, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{year, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{group=}\NormalTok{racacor, }\AttributeTok{color=}\NormalTok{racacor)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{racacor))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-97-1.pdf}}
+
+\hfill\break
+
+Stacked Graph
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_nb\_appended\_melted, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{raca\_cor\_factor, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{x=}\NormalTok{year)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"stack"}\NormalTok{, }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-98-1.pdf}}
+
+\hfill\break
+
+Stacked + Graph
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_nb\_appended\_melted, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill=}\NormalTok{raca\_cor\_factor, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{x=}\NormalTok{year)) }\SpecialCharTok{+} 
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position=}\StringTok{"fill"}\NormalTok{, }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdown-demo_files/figure-latex/unnamed-chunk-99-1.pdf}}
 
 \chapter{Final Words}\label{final-words}
 
