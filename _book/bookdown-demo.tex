@@ -126,7 +126,7 @@
 
 \title{Research in Computational Biology book}
 \author{Gepoliano Chaves}
-\date{2026-07-16}
+\date{2026-07-20}
 
 \begin{document}
 \maketitle
@@ -1928,8 +1928,20 @@ Gráfico age\_qtls vs.~HIF1A
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{racacor\_df }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"./data/racacor\_df.rds"}\NormalTok{)}
+\NormalTok{racacor\_df}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+##   RACACOR       n raca_cor_factor
+## 1       1 6794687          branca
+## 2       4 5295315           parda
+## 3       2 1127508           preta
+## 4    <NA>  364106            <NA>
+## 5       3   74842         amarela
+## 6       5   46782        indígena
+## 7       9       5        ignorado
+\end{verbatim}
 
 \hfill\break
 
@@ -1948,6 +1960,27 @@ Transforma coluna com caracteres em nomes de raça/cor
                                                                      \FunctionTok{ifelse}\NormalTok{(racacor\_df}\SpecialCharTok{$}\NormalTok{RACACOR }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{, }\StringTok{"ignorado"}\NormalTok{,}\StringTok{"0"}\NormalTok{)))))))}
 \end{Highlighting}
 \end{Shaded}
+
+\hfill\break
+
+Verificar objeto racacor\_df
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{racacor\_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   RACACOR       n raca_cor_factor
+## 1       1 6794687          branca
+## 2       4 5295315           parda
+## 3       2 1127508           preta
+## 4    <NA>  364106            <NA>
+## 5       3   74842         amarela
+## 6       5   46782        indígena
+## 7       9       5        ignorado
+\end{verbatim}
 
 \hfill\break
 

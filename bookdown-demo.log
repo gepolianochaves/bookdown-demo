@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.8)  16 JUL 2026 18:02
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.8)  20 JUL 2026 11:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1969,36 +1969,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 1926--1927
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1934--1935
-
- []
-
-
 
 [53]
-Underfull \hbox (badness 10000) in paragraph at lines 1952--1953
+Underfull \hbox (badness 10000) in paragraph at lines 1946--1947
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1956--1957
+Underfull \hbox (badness 10000) in paragraph at lines 1964--1965
 
  []
 
-File: bookdown-demo_files/figure-latex/barplot-1.pdf Graphic file (type pdf)
-<use bookdown-demo_files/figure-latex/barplot-1.pdf>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 1985--1986
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1989--1990
+
+ []
 
 
 
 [54]
-Underfull \hbox (badness 10000) in paragraph at lines 1971--1972
+File: bookdown-demo_files/figure-latex/barplot-1.pdf Graphic file (type pdf)
+<use bookdown-demo_files/figure-latex/barplot-1.pdf>
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1996--1997
+Underfull \hbox (badness 10000) in paragraph at lines 2004--2005
 
  []
 
@@ -2010,166 +2008,168 @@ Overfull \hbox (14.34233pt too wide) has occurred while \output is active
  []
 
 [55]
-Underfull \hbox (badness 10000) in paragraph at lines 2009--2010
+Underfull \hbox (badness 10000) in paragraph at lines 2029--2030
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2042--2043
 
  []
 
 File: bookdown-demo_files/figure-latex/unnamed-chunk-78-1.pdf Graphic file (type pdf)
 <use bookdown-demo_files/figure-latex/unnamed-chunk-78-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2023--2024
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2027--2028
-
- []
-
-
-Package natbib Warning: Citation `STHTDA202408' on page 56 undefined on input line 2029.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [56]
-Underfull \hbox (badness 10000) in paragraph at lines 2031--2032
+Underfull \hbox (badness 10000) in paragraph at lines 2056--2057
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2060--2061
+
+ []
+
+
+Package natbib Warning: Citation `STHTDA202408' on page 57 undefined on input line 2062.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2064--2065
 
  []
 
 
 
 [57]
-Underfull \hbox (badness 10000) in paragraph at lines 2116--2117
-
- []
-
-
 
 [58]
+Underfull \hbox (badness 10000) in paragraph at lines 2149--2150
+
+ []
+
+
 
 [59]
-Underfull \hbox (badness 10000) in paragraph at lines 2208--2209
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2219--2220
-
- []
-
-
 
 [60]
+Underfull \hbox (badness 10000) in paragraph at lines 2241--2242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2252--2253
+
+ []
+
+
 
 [61]
-Underfull \hbox (badness 10000) in paragraph at lines 2296--2297
+
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 2329--2330
 
  []
 
 File: bookdown-demo_files/figure-latex/unnamed-chunk-82-1.pdf Graphic file (type pdf)
 <use bookdown-demo_files/figure-latex/unnamed-chunk-82-1.pdf>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[62]
-Underfull \hbox (badness 10000) in paragraph at lines 2319--2320
+Underfull \hbox (badness 10000) in paragraph at lines 2352--2353
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2323--2324
+Underfull \hbox (badness 10000) in paragraph at lines 2356--2357
 
- []
-
-
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
-[]\TU/lmtt/m/n/10 ##               CONTADOR RACACOR  DTOBITO CAUSABAS   DTNASC IDADE        YMD year[] 
- []
-
-
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
-[]\TU/lmtt/m/n/10 ## 876...17551        876       4 20012016     C749 10122010   405 2016-01-20 2016[] 
- []
-
-
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
-[]\TU/lmtt/m/n/10 ## 5811...56566    562030       1 14052018     C749 22042018   222 2018-05-14 2018[] 
- []
-
-
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
-[]\TU/lmtt/m/n/10 ## 8831...77296    613331       1 11062019     C749 31011964   455 2019-06-11 2019[] 
- []
-
-
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
-[]\TU/lmtt/m/n/10 ## 14106...82571   987213       4 01042019     C749 12021950   469 2019-04-01 2019[] 
  []
 
 
 
 [63]
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
+[]\TU/lmtt/m/n/10 ##               CONTADOR RACACOR  DTOBITO CAUSABAS   DTNASC IDADE        YMD year[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
+[]\TU/lmtt/m/n/10 ## 876...17551        876       4 20012016     C749 10122010   405 2016-01-20 2016[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
+[]\TU/lmtt/m/n/10 ## 5811...56566    562030       1 14052018     C749 22042018   222 2018-05-14 2018[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
+[]\TU/lmtt/m/n/10 ## 8831...77296    613331       1 11062019     C749 31011964   455 2019-06-11 2019[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
+[]\TU/lmtt/m/n/10 ## 14106...82571   987213       4 01042019     C749 12021950   469 2019-04-01 2019[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
 []\TU/lmtt/m/n/10 ## 900...87692      78999       1 08032020     C749 02042014   405 2020-03-08 2020[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 2342--2342
+Overfull \hbox (85.5pt too wide) in paragraph at lines 2375--2375
 []\TU/lmtt/m/n/10 ## 8259...95051    470277       1 15022020     C749 21052005   414 2020-02-15 2020[] 
  []
 
 File: bookdown-demo_files/figure-latex/unnamed-chunk-83-1.pdf Graphic file (type pdf)
 <use bookdown-demo_files/figure-latex/unnamed-chunk-83-1.pdf>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [64]
-Underfull \hbox (badness 10000) in paragraph at lines 2381--2382
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2410--2411
+Underfull \hbox (badness 10000) in paragraph at lines 2443--2444
 
  []
 
 
 
 [65]
-Underfull \hbox (badness 10000) in paragraph at lines 2451--2452
+Underfull \hbox (badness 10000) in paragraph at lines 2484--2485
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2461--2462
+Underfull \hbox (badness 10000) in paragraph at lines 2494--2495
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2477--2478
+Underfull \hbox (badness 10000) in paragraph at lines 2510--2511
 
  []
 
 
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 2488--2489
+Underfull \hbox (badness 10000) in paragraph at lines 2521--2522
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2499--2500
+Underfull \hbox (badness 10000) in paragraph at lines 2532--2533
 
  []
 
 File: bookdown-demo_files/figure-latex/unnamed-chunk-89-1.pdf Graphic file (type pdf)
 <use bookdown-demo_files/figure-latex/unnamed-chunk-89-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2513--2514
+Underfull \hbox (badness 10000) in paragraph at lines 2546--2547
 
  []
 
@@ -2179,7 +2179,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2513--2514
 File: bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type pdf)
 <use bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2534--2535
+Underfull \hbox (badness 10000) in paragraph at lines 2567--2568
 
  []
 
@@ -2191,17 +2191,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [68]
-Underfull \hbox (badness 10000) in paragraph at lines 2555--2556
+Underfull \hbox (badness 10000) in paragraph at lines 2588--2589
 
  []
 
 
-Overfull \hbox (111.75pt too wide) in paragraph at lines 2577--2577
+Overfull \hbox (111.75pt too wide) in paragraph at lines 2610--2610
 []\TU/lmtt/m/n/10 ## Warning: Removed 10 rows containing missing values or values outside the scale range[] 
  []
 
 
-Overfull \hbox (111.75pt too wide) in paragraph at lines 2582--2582
+Overfull \hbox (111.75pt too wide) in paragraph at lines 2615--2615
 []\TU/lmtt/m/n/10 ## Warning: Removed 10 rows containing missing values or values outside the scale range[] 
  []
 
@@ -2213,7 +2213,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [69]
-Underfull \hbox (badness 10000) in paragraph at lines 2586--2587
+Underfull \hbox (badness 10000) in paragraph at lines 2619--2620
 
  []
 
@@ -2225,7 +2225,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [70]
-Underfull \hbox (badness 10000) in paragraph at lines 2607--2608
+Underfull \hbox (badness 10000) in paragraph at lines 2640--2641
 
  []
 
@@ -2237,7 +2237,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [71]
-Underfull \hbox (badness 10000) in paragraph at lines 2620--2621
+Underfull \hbox (badness 10000) in paragraph at lines 2653--2654
 
  []
 

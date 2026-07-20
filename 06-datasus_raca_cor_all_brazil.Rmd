@@ -21,6 +21,7 @@ library(kableExtra)
 
 ```{r}
 racacor_df <- readRDS("./data/racacor_df.rds")
+racacor_df
 ```
 
 \
@@ -37,6 +38,14 @@ racacor_df <- racacor_df %>%
                                                        ifelse(racacor_df$RACACOR == "4", "parda", 
                                                               ifelse(racacor_df$RACACOR == "5", "indígena",
                                                                      ifelse(racacor_df$RACACOR == "9", "ignorado","0")))))))
+```
+
+\
+
+Verificar objeto racacor_df
+
+```{r ifelse racacor_df}
+racacor_df
 ```
 
 \
