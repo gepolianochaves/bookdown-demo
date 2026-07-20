@@ -208,11 +208,29 @@ wide_dados_nb_appended <- dcast(dados_nb_race_year_selcd, year ~ RACACOR)
 
 \
 
+Verify wide_dados_nb_appended
+
+```{r}
+wide_dados_nb_appended
+```
+
+
+\
+
 Melt the data frame
 
 ```{r}
 dados_nb_appended_melted <- melt(wide_dados_nb_appended, id.vars = "year")
 ```
+
+\
+
+Verificar dados_nb_appended_melted
+
+```{r}
+dados_nb_appended_melted
+```
+
 
 \
 

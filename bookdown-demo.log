@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.8)  20 JUL 2026 11:49
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.1.8)  20 JUL 2026 12:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2145,64 +2145,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 2484--2485
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2494--2495
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2510--2511
+Underfull \hbox (badness 10000) in paragraph at lines 2508--2509
 
  []
 
 
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 2521--2522
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2532--2533
-
- []
-
-File: bookdown-demo_files/figure-latex/unnamed-chunk-89-1.pdf Graphic file (type pdf)
-<use bookdown-demo_files/figure-latex/unnamed-chunk-89-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 2546--2547
+Underfull \hbox (badness 10000) in paragraph at lines 2518--2519
 
  []
 
 
 
 [67]
-File: bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type pdf)
-<use bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 2567--2568
+Underfull \hbox (badness 10000) in paragraph at lines 2592--2593
 
  []
 
-File: bookdown-demo_files/figure-latex/unnamed-chunk-93-1.pdf Graphic file (type pdf)
-<use bookdown-demo_files/figure-latex/unnamed-chunk-93-1.pdf>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 2608--2609
+
+ []
 
 
 
 [68]
-Underfull \hbox (badness 10000) in paragraph at lines 2588--2589
+Underfull \hbox (badness 10000) in paragraph at lines 2619--2620
 
  []
 
 
-Overfull \hbox (111.75pt too wide) in paragraph at lines 2610--2610
-[]\TU/lmtt/m/n/10 ## Warning: Removed 10 rows containing missing values or values outside the scale range[] 
+Underfull \hbox (badness 10000) in paragraph at lines 2630--2631
+
+ []
+
+File: bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type pdf)
+<use bookdown-demo_files/figure-latex/unnamed-chunk-91-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 2644--2645
+
  []
 
 
-Overfull \hbox (111.75pt too wide) in paragraph at lines 2615--2615
-[]\TU/lmtt/m/n/10 ## Warning: Removed 10 rows containing missing values or values outside the scale range[] 
+
+[69]
+File: bookdown-demo_files/figure-latex/unnamed-chunk-93-1.pdf Graphic file (type pdf)
+<use bookdown-demo_files/figure-latex/unnamed-chunk-93-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 2665--2666
+
  []
 
 File: bookdown-demo_files/figure-latex/unnamed-chunk-95-1.pdf Graphic file (type pdf)
@@ -2212,9 +2204,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[69]
-Underfull \hbox (badness 10000) in paragraph at lines 2619--2620
+[70]
+Underfull \hbox (badness 10000) in paragraph at lines 2686--2687
 
+ []
+
+
+Overfull \hbox (111.75pt too wide) in paragraph at lines 2708--2708
+[]\TU/lmtt/m/n/10 ## Warning: Removed 10 rows containing missing values or values outside the scale range[] 
+ []
+
+
+Overfull \hbox (111.75pt too wide) in paragraph at lines 2713--2713
+[]\TU/lmtt/m/n/10 ## Warning: Removed 10 rows containing missing values or values outside the scale range[] 
  []
 
 File: bookdown-demo_files/figure-latex/unnamed-chunk-97-1.pdf Graphic file (type pdf)
@@ -2224,20 +2226,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[70]
-Underfull \hbox (badness 10000) in paragraph at lines 2640--2641
-
- []
-
-File: bookdown-demo_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (type pdf)
-<use bookdown-demo_files/figure-latex/unnamed-chunk-98-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
 [71]
-Underfull \hbox (badness 10000) in paragraph at lines 2653--2654
+Underfull \hbox (badness 10000) in paragraph at lines 2717--2718
 
  []
 
@@ -2249,18 +2239,42 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [72]
+Underfull \hbox (badness 10000) in paragraph at lines 2738--2739
+
+ []
+
+File: bookdown-demo_files/figure-latex/unnamed-chunk-100-1.pdf Graphic file (type pdf)
+<use bookdown-demo_files/figure-latex/unnamed-chunk-100-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [73]
+Underfull \hbox (badness 10000) in paragraph at lines 2751--2752
 
-[74
+ []
+
+File: bookdown-demo_files/figure-latex/unnamed-chunk-101-1.pdf Graphic file (type pdf)
+<use bookdown-demo_files/figure-latex/unnamed-chunk-101-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[74]
+
+[75]
+
+[76
 
 ]
 Chapter 6.
 (./bookdown-demo.bbl
 
-[75]
+[77]
 
-[76
+[78
 
 ]
 
@@ -2272,7 +2286,7 @@ Package natbib Warning: There were undefined citations.
 
 
 
-[77] (./bookdown-demo.aux)
+[79] (./bookdown-demo.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-25>
@@ -2280,11 +2294,11 @@ L3 programming layer <2024-12-25>
  ) 
 Here is how much of TeX's memory you used:
  19693 strings out of 475884
- 374638 string characters out of 5774253
+ 374656 string characters out of 5774253
  940109 words of memory out of 5000000
  42283 multiletter control sequences out of 15000+600000
  564552 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,6n,123p,1010b,737s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on bookdown-demo.pdf (77 pages).
+Output written on bookdown-demo.pdf (79 pages).
